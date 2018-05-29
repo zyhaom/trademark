@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -34,44 +33,45 @@ public class SensitivePic extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		req.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
-		resp.setContentType("text/html;charset=utf-8");
-		resp.setCharacterEncoding("utf-8");
-		req.setCharacterEncoding("utf-8");
-		
-		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
-		if (isMultipart) {
-			try {
-				FileItemFactory factory = new DiskFileItemFactory();
-				ServletFileUpload upload = new ServletFileUpload(factory);
-				upload.setHeaderEncoding("UTF-8");
-				List<FileItem> items = upload.parseRequest(req);
-				String newName = System.currentTimeMillis()+".jpg";
-				String dir = "E:\\trademark\\img\\00\\01"+File.separator+newName;
-				
-				String returnName = null;
-				for (FileItem item : items) {
-					if (item.isFormField()) {// 如果文本类型参数
-						String name = item.getFieldName();
-						String value = item.getString("UTF-8");
-						System.out.println(name + "=" + value);
-					} else {// 如果文件类型参数
-						File saveFile = new File(dir);
-						returnName = item.getName();
-						item.write(saveFile);
-					}
-				}
-				if(returnName!=null){
-					out.print(returnName);
-				}
-				out.print("上传成功");
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.print("error");
-			}finally{
-				out.close();
-			}
-		} 
+		// String relevantType = req.getParameter("relevantType")==null?"":req.getParameter("relevantType").trim();
+		// String typeID = req.getParameter("typeID")==null?"":req.getParameter("typeID").trim();
+		// String option = req.getParameter("option")==null?"":req.getParameter("option").trim();//option : del 删除，ins 增加 ，sel 查询
+
+		try {
+			// 0.收到文件
+			String newName = System.currentTimeMillis()+".jpg";
+			String senPicPath = "E:\\trademark\\img\\00\\01"+File.separator+newName;
+			upfile(req, senPicPath);
+			log.info("新增的[敏感]图片全路径 : "+senPicPath);
+			
+			// 1.生成特征文件
+			String picDirFullPath = senPicPath;// [敏感]图片全路径
+			String featureDirFullPath = picDirFullPath.substring(0, picDirFullPath.lastIndexOf("\\")).replaceAll("img", "dat");
+			TradeMarkDll.callInit(picDirFullPath, featureDirFullPath, false);
+
+			// 2.初始化sbprop表
+			TableSBPropBO tableSBPropBO = new TableSBPropBO();
+
+			Set<String> l = new HashSet<String>();
+//			String datDirFullPath = featureDirFullPath + ".dat";
+			String id = new File(picDirFullPath).getName();
+			// id = id.replace("E:\\trademark\\dat\\", "");
+			id = id.replaceAll("\\\\", "\\\\\\\\");
+			l.add("INSERT INTO t_sbprop (datPathID,typeID,sbName,reqID,reqStartDate,reqMan,reqFinishDate,stat) " + "VALUES ('" + id + "','"
+					+ id.substring(0, id.lastIndexOf("\\\\")).replaceAll("\\\\", "") + "','敏感图片','tradNO_2','2017-07-31','trader','2017-08-01',2);");
+
+			tableSBPropBO.initSql(l);
+
+			out.print("ok:"+senPicPath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			out.close();
+		}
 	}
 
 	@Override
@@ -81,11 +81,12 @@ public class SensitivePic extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		doPost(req, resp);
 	}
+
 	
 	private void upfile(HttpServletRequest request,String imgFullPathStr) throws FileNotFoundException, IOException {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
           
-        if (isMultipart) {
+//        if (isMultipart) {
              
             // 创建工厂（这里用的是工厂模式）
             DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -101,7 +102,8 @@ public class SensitivePic extends HttpServlet {
             //解析请求
             try {
                 //把零件送给生产线，出来的就是一辆组装好的汽车（把request转成FileItem的实例）
-                List<FileItem> items = upload.parseRequest(request);
+                @SuppressWarnings("unchecked")
+				List<FileItem> items = upload.parseRequest(request);
                 Iterator<FileItem> iter = items.iterator();
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
@@ -134,16 +136,24 @@ public class SensitivePic extends HttpServlet {
             } catch (FileUploadException e) {
                 e.printStackTrace();
             }
-        }
+//        }
+	}
+	private static void sql(Set<String> l,String path){
+		File f = new File(path);
+		File[] fs = f.listFiles();
+		for (int i = 0; i < fs.length; i++) {
+			if(fs[i].isDirectory()){
+				sql(l,fs[i].toString());
+			}else{
+				String id = fs[i].toString().substring(0, fs[i].toString().lastIndexOf(".dat"));
+				id = id.replace("E:\\trademark\\dat\\", "");
+				id = id.replaceAll("\\\\", "\\\\\\\\");
+//					System.out.println(index+++"\t"+fs[i]+"\t"+id.replace(root, ""));
+				l.add("INSERT INTO t_sbprop (datPathID,typeID,sbName,reqID,reqStartDate,reqMan,reqFinishDate,stat) " +
+//							"VALUES ('"+id+"','"+id.substring(0, id.lastIndexOf("\\\\")).replaceAll("\\\\", "")+"','tradeName','tradNO_1','2016-03-20','trader','2017-03-20',2);");
+						"VALUES ('"+id+"','"+id.substring(0, id.lastIndexOf("\\\\")).replaceAll("\\\\", "")+"','tradeNameT','tradNO_2','2017-07-31','trader','2017-08-01',2);");
+			}
+		}
 	}
 	
-	public static void main(String[] args) {
-		String p = "D:\\html5\\code\\Folder.jpg";
-		System.out.println(p);
-		File f = new File(p);
-		System.out.println(f.getName());
-		System.out.println(f.getParent());
-		p = p.substring(0, p.lastIndexOf("\\"));
-		System.out.println(p);
-	}
 }

@@ -1,7 +1,10 @@
-#Tue Mar 28 17:41:01 CST 2017
+#Tue May 29 14:42:16 CST 2018
 eclipse.preferences.version=1
 encoding//WebRoot/page/upload.html=UTF-8
 encoding//src/com/dll/tm/TradeMarkDll.java=UTF-8
+encoding//src/com/servlet/option/SensitivePic.java=UTF-8
+encoding//src/com/servlet/option/SensitivePic_BAK.java=UTF-8
 encoding//src/com/servlet/search/CopyOfFetchsimilarSB.java_bak=UTF-8
 encoding//src/com/servlet/upload/CopyOfUploadServlet.java=UTF-8
 encoding//src/com/servlet/upload/UploadServlet.java=UTF-8
+encoding/<project>=UTF-8
