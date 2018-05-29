@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>js.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript">
+
+	var car = {
+		colour : 'red',
+		wheels : 4,
+		hubcaps : 'spinning_郝明',
+		age : 4
+	};
+
+	var band = {
+		"name" : "The Red Hot Chili Peppers",
+		"members" : [ {
+			"name" : "Anthony Kiedis",
+			"role" : "lead vocals"
+		}, {
+			"name" : "Michael 'Flea' Balzary",
+			"role" : "bass guitar, trumpet, backing vocals"
+		}, {
+			"name" : "Chad Smith",
+			"role" : "drums,percussion"
+		}, {
+			"name" : "John Frusciante",
+			"role" : "Lead Guitar"
+		} ],
+		"year" : "2009"
+	};
+
+	var myApplication = function() {
+		var name = 'Chris';
+		var age = '34';
+		var status = 'single';
+		return {
+			createMember : function() {
+				alert(name+" "+age+" "+status);
+				//alert("createMember");
+			},
+			getMemberDetails : function() {
+				alert("getMemberDetails");
+			}
+		};
+	}();
+
+	function init() {
+		//alert(band.members[1].role);
+		//alert(car.hubcaps);
+		//myApplication.createMember();
+		delicious(band.members);
+	}
+
+	function delicious(o) {
+		var out = '<ul>';
+		for ( var i = 0; i < o.length; i++) {
+			out += '<li><a href="' + o[i].name + '">' + o[i].role + '</a></li>';
+		}
+		out += '</ul>';
+		document.getElementById('delicious').innerHTML = out;
+	}
+	
+	
+</script>
+
+</head>
+
+<body onload="init();">
+	This is my js page.
+	<br>
+
+	<div id="delicious"></div>
+
+
+</body>
+</html>

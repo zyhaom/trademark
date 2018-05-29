@@ -1,0 +1,25 @@
+websocket:
+
+每调用一次 trigger.jsp文件，在ws.html页面中就能实时体现出来。【WebServer --> Brower】
+依赖activeMQ-apollo的ws协议和stomp协议
+
+=================================================
+
+
+2.Servlet传值给Jsp
+
+具体实现如下：
+
+java代码：String   a= "abccdefg "; 
+             request.setAttribute( "ValueA ",a); 
+             request.getRequestDispatcher( "网址/jsp页面 ").forward(request,response); 
+
+jsp页面：
+
+<%
+
+String   s   =(String)request.getAttribute( "ValueA ");
+
+%>
+
+jsp页面就可以取出Servlet的值。

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+ 	<meta http-equiv="expires" content="0">  
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+	<script type="text/javascript">
+		function checkFunc(){
+			var userID = document.getElementById("id_userID");
+			var file = document.getElementById("id_file");
+			if(userID.value == "" || file.value == ""){
+				alert("用户名和文件不能为空！");
+				return false;
+			}else{
+				//alert(userID.value);
+				return true;
+			}
+		}
+	</script>
+  </head>
+  
+  <body>
+   	 <form onsubmit="return checkFunc();" action='http://192.168.1.78:8088/trademark/FileUploadServlet' method="post" enctype="multipart/form-data">
+	     <label for="file">请选择图片文件:</label>
+	     <input type="file" name = "file" id = "id_file"  size="50"  accept="image/*" /><br />
+	     <label>请填写用户名:</label>
+	     <input  type="text" name="userID" id="id_userID" title="请填写用户名" maxlength="11" />
+	     <br />
+	     <br />
+	     <input type="submit" name="submit" value="Submit" />
+	 </form>
+  </body>
+</html>

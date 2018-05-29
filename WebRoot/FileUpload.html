@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title>upload experiment</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<script type="text/javascript">
+			function checkFunc(o){
+				//alert(o.action+o.enctype);
+				return true;
+			}
+		</script>
+	
+	</head>
+	<body>
+		<h3>
+			UL
+		</h3>
+		<form action="postimg.do?text_name3=kkk&text_name4=\u4e2d\u6587" enctype="multipart/form-data" method="post" onsubmit="return checkFunc(this);">
+<!-- 		<form action="http://127.0.0.1:8088/trademark/UploadServlet" enctype="multipart/form-data" method="post" onsubmit="return checkFunc(this);"> -->
+		
+		    username:<input type="text" name="usernmae" id="text1"><br>
+			图片文件：
+			&nbsp;<input type="file" name="file" id="5413241234"><br>
+			应用图标文件：
+			<input type="file" name="file" id="2"><br>
+			
+			文字说明图片：
+			<input type="file" name="file" id="3"><br>
+			
+			轮显图片1：
+			&nbsp;&nbsp;&nbsp;<input type="file" name="file" id="4" accept="image/*"><br>
+			
+			轮显图片2：
+			&nbsp;&nbsp;&nbsp;<input type="file" name="file" id="5"><br>
+			
+			轮显图片3：
+			&nbsp;&nbsp;&nbsp;<input type="file" name="file" id="6"><br>
+			
+			text2:<input type="text" name="text_name2" id="text2"><br>
+			<input type="submit" value="上载" >
+		</form>
+	</body>
+</html>

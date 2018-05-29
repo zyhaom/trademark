@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+<!-- <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  -->
+<!-- xmlns="http://java.sun.com/xml/ns/javaee"  -->
+<!-- xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"  -->
+<!-- xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"  -->
+<!-- version="2.5"> -->
+  <display-name></display-name>
+  <listener>
+    <listener-class>com.listener.MyListener</listener-class>
+  </listener>
+  
+<!--   <filter> -->
+<!--   	<filter-name>CharsetEncodingFilter</filter-name> -->
+<!--   	<filter-class>com.filter.CharsetEncodingFilter</filter-class> -->
+<!--   	<init-param> -->
+<!--   		<param-name>endcoding</param-name> -->
+<!--   		<param-value>UTF-8</param-value>  -->
+<!--   	</init-param> -->
+<!--   </filter> -->
+  
+<!--   <filter-mapping> -->
+<!--   	<filter-name>CharsetEncodingFilter</filter-name> -->
+<!--   	<url-pattern>*.html</url-pattern> -->
+<!--   </filter-mapping> -->
+
+
+<!--   http://www.lifengdi.com/article/10009.html -->
+<!--   CORS(跨域资源共享) start -->
+	<filter>       
+       <filter-name>CORS</filter-name>
+       <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+       <init-param>
+        <param-name>cors.allowOrigin</param-name>
+           <param-value>*</param-value>
+       </init-param>
+       <init-param>
+        <param-name>cors.supportedMethods</param-name>
+           <param-value>GET, POST, HEAD, PUT, DELETE</param-value>
+       </init-param>
+       <init-param>
+        <param-name>cors.supportedHeaders</param-name>
+           <param-value>Accept, Origin, X-Requested-With, Content-Type, Last-Modified</param-value>
+       </init-param>
+       <init-param>
+           <param-name>cors.exposedHeaders</param-name>
+           <param-value>Set-Cookie</param-value>
+       </init-param>
+       <init-param>
+           <param-name>cors.supportsCredentials</param-name>
+           <param-value>true</param-value>
+       </init-param>
+   </filter>
+  
+   <filter-mapping>
+       <filter-name>CORS</filter-name>
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
+<!--   CORS(跨域资源共享) end-->
+
+  <!-- <servlet>
+    <servlet-name>PicUploadServlet</servlet-name>
+    <servlet-class>com.servlet.upload.PicUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PicUploadServlet</servlet-name>
+    <url-pattern>/PicUploadServlet</url-pattern>
+  </servlet-mapping> -->
+<!--   <servlet> -->
+<!--     <servlet-name>FileUploadServlet</servlet-name> -->
+<!--     <servlet-class>com.servlet.upload.FileUploadServlet</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>FileUploadServlet</servlet-name> -->
+<!--     <url-pattern>/FileUploadServlet</url-pattern> -->
+<!--   </servlet-mapping> -->
+  <servlet>
+    <servlet-name>SBTypeAction</servlet-name>
+    <servlet-class>com.servlet.data.SBTypeAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SBTypeAction</servlet-name>
+    <url-pattern>/SBTypeAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.servlet.upload.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/postimg.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>fetchsimilarSB</servlet-name>
+    <servlet-class>com.servlet.search.FetchsimilarSB</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fetchsimilarSB</servlet-name>
+    <url-pattern>/getsearchpic.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>batchDat</servlet-name>
+    <servlet-class>com.servlet.option.BatchDat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>batchDat</servlet-name>
+    <url-pattern>/batchDat.action</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TableSBPropInit</servlet-name>
+    <servlet-class>com.servlet.option.TableSBPropInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TableSBPropInit</servlet-name>
+    <url-pattern>/tableSBPropInit.action</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>userAdd</servlet-name>
+    <servlet-class>com.servlet.user.UserAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userAdd</servlet-name>
+    <url-pattern>/regist.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>userModify</servlet-name>
+    <servlet-class>com.servlet.user.UserModify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userModify</servlet-name>
+    <url-pattern>/resetpsw.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>userLogin</servlet-name>
+    <servlet-class>com.servlet.user.UserLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userLogin</servlet-name>
+    <url-pattern>/login.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>fetchShortMsgCode</servlet-name>
+    <servlet-class>com.servlet.user.FetchShortMsgCode</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fetchShortMsgCode</servlet-name>
+    <url-pattern>/getmessage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MinganPicShow</servlet-name>
+    <servlet-class>com.servlet.option.MinganPicShow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MinganPicShow</servlet-name>
+    <url-pattern>/MinganPicShow</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <description>3.13del</description>
+    <servlet-name>DelSearchHistory</servlet-name>
+    <servlet-class>com.servlet.option.DelSearchHistory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelSearchHistory</servlet-name>
+    <url-pattern>/delRecord.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>3.7</description>
+    <servlet-name>FetchSearchedPicList</servlet-name>
+    <servlet-class>com.servlet.search.FetchSearchedPicList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchSearchedPicList</servlet-name>
+    <url-pattern>/getsearchRecord.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>3.8</description>
+    <servlet-name>FetchSearchedTypeList</servlet-name>
+    <servlet-class>com.servlet.search.FetchSearchedTypeList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchSearchedTypeList</servlet-name>
+    <url-pattern>/getRecord.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>3.9</description>
+    <servlet-name>FetchSearchedDatList</servlet-name>
+    <servlet-class>com.servlet.search.FetchSearchedDatList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchSearchedDatList</servlet-name>
+    <url-pattern>/getfindlist.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>3.10</description>
+    <servlet-name>FetchSingleDat</servlet-name>
+    <servlet-class>com.servlet.search.FetchSingleDat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchSingleDat</servlet-name>
+    <url-pattern>/getfindinfo.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>RelevantType</description>
+    <servlet-name>RelevantType</servlet-name>
+    <servlet-class>com.servlet.option.RelevantType</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RelevantType</servlet-name>
+    <url-pattern>/RelevantType.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SensitivePic</servlet-name>
+    <servlet-class>com.servlet.option.SensitivePic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SensitivePic</servlet-name>
+    <url-pattern>/SensitivePic.do</url-pattern>
+  </servlet-mapping>
+    <!-- <servlet>
+    <servlet-name>UpLoadExcelServlet</servlet-name>
+    <servlet-class>com.servlet.UpLoadExcelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpLoadExcelServlet</servlet-name>
+    <url-pattern>/upfile</url-pattern>
+  </servlet-mapping> -->
+  
+  <!-- <error-page>
+		<error-code>404</error-code>
+		<location>/error.html</location>
+	</error-page> -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.html</location>
+	</error-page>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <resource-ref>
+    <description>popuserDataSource</description>
+    <res-ref-name>jdbc/MySql_pic_search</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+</web-app>
