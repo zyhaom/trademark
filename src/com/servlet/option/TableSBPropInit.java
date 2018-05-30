@@ -56,7 +56,7 @@ public class TableSBPropInit extends HttpServlet {
 			sql(l,datDirFullPath);
 			tableSBPropBO.initSql(l);
 			
-			out.print(l.size()+"\n"+l.toArray()[1].toString());
+			out.print(l.size());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

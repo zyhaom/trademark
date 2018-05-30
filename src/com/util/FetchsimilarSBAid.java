@@ -66,7 +66,7 @@ public class FetchsimilarSBAid {
 					continue;
 				}
 				String datDirFullPath = null;
-				float precision = 0.3f;
+				float precision = 0.5f;
 				if(!"".equals(precisionNum)){
 					precision = Float.parseFloat(precisionNum);
 				}
@@ -85,7 +85,8 @@ public class FetchsimilarSBAid {
 					for (int i = 0; i < datDirs.length; i++) {
 						datDirFullPath = datDirs[i].toString();
 //						log.info(datDirFullPath);
-						List<Entry<Object, Object>> l = searchFunc2(datDirFullPath, precision, tempDatFullPath);
+//						List<Entry<Object, Object>> l = searchFunc2(datDirFullPath, precision, tempDatFullPath);//老接口方法
+						List<Entry<Object, Object>> l = searchFuncMultiThread(datDirFullPath, precision, tempDatFullPath);//多线程调用接口方法
 						if(l == null){
 							continue;
 						}
@@ -104,6 +105,7 @@ public class FetchsimilarSBAid {
 //						sqlSet.add("INSERT INTO t_searchhistory (userID,picPath,datPathID,stat,timeGLWZ) " +
 //								"VALUES ('"+userID+"','"+picPath+"','"+datPathID+"','"+stat+"',"+0+");");
 //					}
+					
 					bo.initSql(sqlSet);
 				
 				//3.删除临时的dat文件
@@ -185,8 +187,33 @@ public class FetchsimilarSBAid {
 		List<Entry<Object,Object>> l = CommUtil.orderMap(m);//排序
 		return l;
 	}
+	
+	//多线程检索相似图片的接口方法【线程数默认3】
+	private static List<Entry<Object, Object>> searchFuncMultiThread(String datDirFullPath, final float precision, final String tempDatFullPath) {
+		
+		Map<Object, Object> m = new TreeMap<Object, Object>();
+		if(datDirFullPath==null){
+			return null;
+		}
+		//12_65~0.282~~7_10~0.278
+		if(datDirFullPath.endsWith("\\"))
+			datDirFullPath = datDirFullPath.substring(0,datDirFullPath.length()-1);
+		String result = TradeMarkDll.callSearchMultiThread(tempDatFullPath, datDirFullPath, precision, 3);//在指定的目录下查找相似的图片特征【耗时操作】
+		if(result.length()!=0){
+			String preDir = datDirFullPath.replace("E:\\trademark\\dat\\", "");
+			String[] items = result.split("~~");
+			for (int i = 0; i < items.length; i++) {
+				String[] item = items[i].split("~");
+				m.put(preDir+File.separator+item[0], item[1]);
+			}
+		}
+		
+		List<Entry<Object,Object>> l = CommUtil.orderMap(m);//排序
+		return l;
+	}
+	
 	private static List<Entry<Object, Object>> searchFunc2(String datDirFullPath, final float precision, final String tempDatFullPath) {
-		int topSearchNum = 10000; //检索上限
+		int topSearchNum = 20000; //检索上限
 		
 		Map<Object, Object> m = new TreeMap<Object, Object>();
 		float tempFloat = 0f;//临时相似距离
