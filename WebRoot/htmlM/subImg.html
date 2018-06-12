@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Aspect Ratio with Preview Pane | Jcrop Demo</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.Jcrop.js"></script>
+<script type="text/javascript"  src="js/param.js"></script>
+
+<script type="text/javascript">
+
+//初始化方法接收上个页面传过来的数据。
+ function init(){
+	 //alert(getParams("username"));
+	$("#id_username_hidden").val(getParams("username"));
+	$("#id_token_hidden").val(getParams("token"));
+	$("#id_status_hidden").val(getParams("status"));
+	$("#id_precision_hidden").val(getParams("precision"));
+	$("#id_pic_hidden").val(getParams("pic"));
+	$("#id_bigclass_hidden").val(getParams("bigclass"));
+	$("#id_smallclass_hidden").val(getParams("smallclass"));
+	
+	$("#target").prop('src',getParams("imgnetURL"));
+	$("#subImg1").prop('src',getParams("imgnetURL"));
+	$("#subImg2").prop('src',getParams("imgnetURL"));
+	$("#subImg3").prop('src',getParams("imgnetURL"));
+	
+	//alert(getParams("natureWidth"));
+	//alert(getParams("natureHeight"));
+ }
+	
+	$(document).ready(function() {  
+		init();
+// 		id_tijiao
+		$("#id_tijiao").click(function(){
+			alert(1);
+			// 		$.post("http://192.168.1.78:8088//trademark/RelevantType.do?option=sel&typeID=01",function(result){
+// 		    var arra = result.split("~");
+// 		    for(var key in arra) {
+// 				$('#'+arra[key]).attr('checked',true); 
+// 			} 
+// 		});
+		});
+		 
+	});
+	
+	
+  curCubImg = "subImg1";
+  var oo = jQuery(function($){
+
+    // Create variables (in this scope) to hold the API and image size
+    var jcrop_api,
+        boundx,
+        boundy,
+        // Grab some information about the preview pane
+        $preview = $('#preview-pane'),
+        $pcnt = $('#preview-pane .preview-container'),
+        $pimg1 = $('#preview-pane .preview-container img#subImg1'),
+				$pimg2 = $('#preview-pane .preview-container img#subImg2'),
+				$pimg3 = $('#preview-pane .preview-container img#subImg3'),
+				$pimg = $pimg1,
+			
+				subLabel_1 = $('#subLabel_1'),
+				subLabel_2 = $('#subLabel_2'),
+				subLabel_3 = $('#subLabel_3'),
+				subLabel = subLabel_1,
+
+        xsize = $pcnt.width(),
+        ysize = $pcnt.height();
+    
+    console.log('init',[xsize,ysize]);
+    $('#target').Jcrop({
+      onChange: updatePreview,
+      onDblClick:testFunc,
+      onSelect: updatePreview,
+      aspectRatio: xsize / ysize
+    },function(){
+      // Use the API to get the real image size
+      var bounds = this.getBounds();
+      boundx = bounds[0];
+      boundy = bounds[1];
+      // Store the API in the jcrop_api variable
+      jcrop_api = this;
+
+      // Move the preview into the jcrop container for css positioning
+      $preview.appendTo(jcrop_api.ui.holder);
+    });
+	
+		function testFunc(c){
+			//alert(curCubImg);
+			//alert(c.w);
+			//alert(subLabel.val());
+			
+			if (parseInt(c.w) > 0){
+        var rx = xsize / c.w;
+        var ry = ysize / c.h;
+
+        $pimg.css({
+          width: Math.round(rx * boundx) + 'px',
+          height: Math.round(ry * boundy) + 'px',
+          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+          marginTop: '-' + Math.round(ry * c.y) + 'px'
+        });
+      }
+		};
+		
+    function updatePreview(c){
+    	showCoords(c);//拖动窗格时实时获得窗格坐标。
+    	
+    	if(curCubImg == "subImg1"){
+				$pimg = $pimg1;
+				subLabel = subLabel_1;
+			}
+			if(curCubImg == "subImg2"){
+				$pimg = $pimg2;
+				subLabel = subLabel_2;
+			}
+			if(curCubImg == "subImg3"){
+				$pimg = $pimg3;
+				subLabel = subLabel_3;
+			}
+			
+      if (parseInt(c.w) > 0){
+      	
+        var rx = xsize / c.w;
+        var ry = ysize / c.h;
+
+        $pimg.css({
+          width: Math.round(rx * boundx) + 'px',
+          height: Math.round(ry * boundy) + 'px',
+          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+          marginTop: '-' + Math.round(ry * c.y) + 'px'
+        });
+      }
+    };
+  
+  //实时填写抠图的坐标  
+  function showCoords(c){
+    $('#x1').val(c.x);
+    $('#y1').val(c.y);
+    $('#x2').val(c.x2);
+    $('#y2').val(c.y2);
+    $('#w').val(c.w);
+    $('#h').val(c.h);
+    
+//     ratio_X  = 113/600;
+//     ratio_Y = 106/400;
+    ratio_X  = getParams("natureWidth")/600;
+    ratio_Y = getParams("natureHeight")/400;
+    subLabel.val(Math.round(c.x*ratio_X)+"~"+Math.round(c.y*ratio_Y)+"~"+Math.round(c.x2*ratio_X)+"~"+Math.round(c.y2*ratio_Y));
+  };
+	
+  });
+
+//点击抠图窗口激活当前窗格
+	function changeSubImg(o){
+		//alert(o.id);
+		curCubImg = o.id;
+	};
+
+</script>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<link rel="stylesheet" href="css/demos.css" type="text/css" />
+<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+<style type="text/css">
+
+/* Apply these styles only when #preview-pane has
+   been placed within the Jcrop widget */
+.jcrop-holder #preview-pane {
+  display: block;
+  position: absolute;
+  z-index: 2000;
+  top: 2px;
+  right: -290px;
+  padding: 6px;
+  border: 1px rgba(0,0,0,.4) solid;
+  background-color: #FFFFFF;
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* The Javascript code will set the aspect ratio of the crop
+   area based on the size of the thumbnail preview,
+   specified here */
+#preview-pane .preview-container {
+  width: 150px;
+  height: 100px;
+  overflow: hidden;
+}
+
+</style>
+
+</head>
+<body>
+<input type='hidden' id="id_username_hidden" value="">
+<input type='hidden' id="id_token_hidden" value="">
+<input type='hidden' id="id_status_hidden" value="">
+<input type='hidden' id="id_precision_hidden" value="">
+<input type='hidden' id="id_pic_hidden" value="">
+<input type='hidden' id="id_bigclass_hidden" value="">
+<input type='hidden' id="id_smallclass_hidden" value="">
+ 
+    <marquee behavior="scroll"><b style="color: red;">温馨提示：先点击右侧小窗口，再在左边窗口框选。</b></marquee>
+  
+<div class="container">
+<div class="row">
+<div class="span12">
+<div class="jc-demo-box">
+
+<div class="page-header">
+<ul class="breadcrumb first">
+  <li><a href="../index.html">Jcrop</a> <span class="divider">/</span></li>
+  <li><a href="../index.html">Demos</a> <span class="divider">/</span></li>
+  <li class="active">Aspect Ratio with Preview Pane</li>
+</ul>
+
+</div>
+
+  <img src="http://117.34.112.103:8088/show/img/img/01\\02\\22_195.jpg" id="target" alt="[Jcrop Example]"  width="600" height="400" />
+
+  <div id="preview-pane">
+    <div class="preview-container">
+      <img id="subImg1" onclick="changeSubImg(this);" src="http://117.34.112.103:8088/show/img/img/01\\02\\22_195.jpg" /> 
+    </div>
+    权重：<input type="text" id="subText1" value="0.6"/><br />
+    坐标: <input type="text" id="subLabel_1" value="nil"/>  
+    <hr />
+    <div class="preview-container">
+      <img id="subImg2" onclick="changeSubImg(this);" src="http://117.34.112.103:8088/show/img/img/01\\02\\22_195.jpg" /> 
+    </div>
+    权重：<input type="text" id="subText2" value="0.2" /><br />
+    坐标：<input type="text" id="subLabel_2" value="nil"/>
+    <hr />
+    <div class="preview-container">
+      <img id="subImg3" onclick="changeSubImg(this);" src="http://117.34.112.103:8088/show/img/img/01\\02\\22_195.jpg" /> 
+    </div>
+    权重：<input type="text" id="subText3" value="0.2" /><br />
+    坐标：<input type="text" id="subLabel_3" value="nil"/>
+  </div>
+  
+
+  
+	<form class="coords"  >
+
+    <div class="inline-labels">
+    <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+    <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+    <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+    <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+    <label>W <input type="text" size="4" id="w" name="w" /></label>
+    <label>H <input type="text" size="4" id="h" name="h" /></label>
+    </div>
+  </form>
+<input type="button" id="id_tijiao" value="提交检索">
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>
+

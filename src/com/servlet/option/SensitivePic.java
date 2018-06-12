@@ -39,34 +39,59 @@ public class SensitivePic extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		// String relevantType = req.getParameter("relevantType")==null?"":req.getParameter("relevantType").trim();
 		// String typeID = req.getParameter("typeID")==null?"":req.getParameter("typeID").trim();
-		// String option = req.getParameter("option")==null?"":req.getParameter("option").trim();//option : del 删除，ins 增加 ，sel 查询
-
+//		 String option = req.getParameter("option")==null?"":req.getParameter("option").trim();//option : del 删除，ins 增加 ，sel 查询
+		 String delID = req.getParameter("delID");
+		 //System.out.println("delID : "+delID);
 		try {
-			// 0.收到文件
-			String newName = System.currentTimeMillis()+".jpg";
-			String senPicPath = "E:\\trademark\\img\\00\\01"+File.separator+newName;
-			upfile(req, senPicPath);
-			log.info("新增的[敏感]图片全路径 : "+senPicPath);
+			if(delID == null){//add
+				// 0.收到文件
+				String newName = System.currentTimeMillis()+".jpg";
+				String senPicPath = "E:\\trademark\\img\\00\\01"+File.separator+newName;
+				upfile(req, senPicPath);
+				log.info("新增的[敏感]图片全路径 : "+senPicPath);
+				
+				// 1.生成特征文件
+				String picDirFullPath = senPicPath;// [敏感]图片全路径
+				String featureDirFullPath = picDirFullPath.substring(0, picDirFullPath.lastIndexOf("\\")).replaceAll("img", "dat");
+				TradeMarkDll.callInit(picDirFullPath, featureDirFullPath, false);
+
+				// 2.初始化sbprop表
+				TableSBPropBO tableSBPropBO = new TableSBPropBO();
+
+				Set<String> l = new HashSet<String>();
+//				String datDirFullPath = featureDirFullPath + ".dat";
+//				String id = new File(picDirFullPath).getName();
+				String id = picDirFullPath.replace("E:\\trademark\\img\\", "");
+				id = id.replace(".jpg", "");
+				id = id.replaceAll("\\\\", "\\\\\\\\");
+				l.add("INSERT INTO t_sbprop (datPathID,typeID,sbName,reqID,reqStartDate,reqMan,reqFinishDate,stat) " + "VALUES ('" + id + "','"
+						+ id.substring(0, id.lastIndexOf("\\\\")).replaceAll("\\\\", "") + "','敏感图片','tradNO_2','2017-07-31','trader','2017-08-01',2);");
+
+				tableSBPropBO.initSql(l);
+
+//				out.print("ok:"+senPicPath);
+				out.print("ok");
+			}else{// del
+				File fImg = new File("E:\\trademark\\img\\00\\01\\"+delID);
+				File fDat = new File("E:\\trademark\\dat\\00\\01\\"+delID);
+				delID = delID.substring(0,delID.indexOf("."));
+				delID = "00\\01\\"+delID;
+				
+				//1.删除数据库记录
+				TableSBPropBO tableSBPropBO = new TableSBPropBO();
+				Set<String> l = new HashSet<String>();
+				String id = delID.replaceAll("\\\\", "\\\\\\\\");
+				l.add("delete from t_sbprop where datPathID= '" + id + "';");
+
+				tableSBPropBO.initSql(l);
+				//2.删除图片以及特征文件
+				fImg.delete();
+				fDat.delete();
+				out.print("ok");
+//				out.print(fImg.getName());
+				
+			}
 			
-			// 1.生成特征文件
-			String picDirFullPath = senPicPath;// [敏感]图片全路径
-			String featureDirFullPath = picDirFullPath.substring(0, picDirFullPath.lastIndexOf("\\")).replaceAll("img", "dat");
-			TradeMarkDll.callInit(picDirFullPath, featureDirFullPath, false);
-
-			// 2.初始化sbprop表
-			TableSBPropBO tableSBPropBO = new TableSBPropBO();
-
-			Set<String> l = new HashSet<String>();
-//			String datDirFullPath = featureDirFullPath + ".dat";
-			String id = new File(picDirFullPath).getName();
-			// id = id.replace("E:\\trademark\\dat\\", "");
-			id = id.replaceAll("\\\\", "\\\\\\\\");
-			l.add("INSERT INTO t_sbprop (datPathID,typeID,sbName,reqID,reqStartDate,reqMan,reqFinishDate,stat) " + "VALUES ('" + id + "','"
-					+ id.substring(0, id.lastIndexOf("\\\\")).replaceAll("\\\\", "") + "','敏感图片','tradNO_2','2017-07-31','trader','2017-08-01',2);");
-
-			tableSBPropBO.initSql(l);
-
-			out.print("ok:"+senPicPath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -155,5 +180,6 @@ public class SensitivePic extends HttpServlet {
 			}
 		}
 	}
+	
 	
 }

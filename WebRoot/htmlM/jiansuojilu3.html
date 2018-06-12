@@ -1,0 +1,189 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>商标检索系统</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+	<!-- css files -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+	<!-- online-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+	<!-- //online-fonts -->
+	
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript"  src="js/param.js"></script>
+	<script type="text/javascript"><!--
+	    
+	    function GetRequest() {  
+	        var url = location.search; //获取url中"?"符后的字串  
+	        var theRequest = new Object();  
+	        if (url.indexOf("?") != -1) {  
+	            var str = url.substr(1);  
+	            strs = str.split("&");  
+	            for (var i = 0; i < strs.length; i++) {  
+	                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);  
+	            }  
+	        }  
+	        return theRequest;  
+	    }  
+	    var request = new Object();  
+	    request = GetRequest();  
+	    var idx = request['idx'];  
+	    var clsid = request['clsid'];  
+	    //alert(email);
+	    //alert(name);  
+	   
+	   
+	//初始化方法接收上个页面传过来的数据。
+		 function init(){
+			 //alert(getParams("username"));
+			$("#id_fid_hidden").val(getParams("fid"));
+			$("#id_clsid_hidden").val(getParams("clsid"));
+			$("#id_token_hidden").val(getParams("token"));
+		 }
+	
+		$(document).ready(function(){
+		 
+		  init();
+		  
+		  $.post("http://192.168.1.78:8088/trademark/getfindlist.do",
+				{
+	    			fid:$("#id_fid_hidden").val(),
+	    			clsid:$("#id_clsid_hidden").val(),
+	    			totalpage:1,
+	    			token:"***"
+	  			},function(result,status){
+		     		//alert(result+status);
+					result = result.replace(/\\/g,"\\\\");
+				    //alert(result);
+				    var o = $.parseJSON( result );
+				    //alert(o.getList[0].recordclass);
+				    // alert(o.getList.length);
+				    $("#pagenum").before("共检测出 "+o.pagenum+" 条相似信息");  
+				      
+				     for(var i=0;i<o.getList.length;i++){
+				           //var ss =String(o.getList[i].id);
+				          $("#jilu3").before("<div  onclick=window.location.href='jiansuojilu4.html?id="+o.getList[i].id+"'> "+
+							    "<table  style='font-size:15px;width:100%;height:90px;border:1px solid #96c2f1;background:#eff7ff;padding-top:4px;'>"+
+								  "<tr>"+
+								    "<td rowspan='3' style='width:25%;border:1px solid #96c2f1;display:table-cell; vertical-align:middle;'>"+
+								        "<img  src='"+o.getList[i].imgurl+"' style='width:60px;height:60px;' >"+
+								    "</td>"+
+								    "<td style='border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >商标名称："+o.getList[i].tradename+"</td>"+
+								  "</tr>"+
+								  "<tr> "+
+								    "<td style='border:1px solid #96c2f1;height:30px; display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >注册号："+o.getList[i].registCode+"</td>"+
+								  "</tr>"+
+								  "<tr>"+
+								    "<td style='border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >注册人："+o.getList[i].registPerson+"</td>"+
+								  "</tr>"+
+								"</table>"+
+							"</div>"
+							);
+				         
+				     }
+		  	});
+		  	
+		  
+	
+		});
+		
+	
+		
+	--></script>
+	
+	
+	
+</head>
+
+<body>
+<input type='hidden' id="id_fid_hidden" value="">
+<input type='hidden' id="id_clsid_hidden" value="">
+<input type='hidden' id="id_token_hidden" value="">
+	<!--header-->
+	<div class="header-w3l">
+		<h1>
+			 <span>商标检索系统</span>
+		</h1>
+	</div>
+	<!--//header-->
+	<div class="main-content-agile">
+		<div class="sub-main-w3">
+			<h2>检索记录</h2>
+			<form action="zhuce2.html" method="post">
+				<div class="pom-agile">
+				  
+				    <div >
+					    <table  style="width:100%;height:30px;border:1px solid #96c2f1;background:#eff7ff;padding-top:4px;margin-bottom:5px;">
+						  <tr>
+						    <td style="border:1px solid #96c2f1;color:red;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:20px;font-size:14px;" >
+						          <div id="pagenum"></div>    
+						    </td>
+						  </tr>
+						
+						</table>
+					</div>
+				   
+				
+				  <!-- 循环体 
+					<div  onclick="window.location.href='jiansuojilu4.html';" >
+					    <table  style="font-size:15px;width:100%;height:90px;border:1px solid #96c2f1;background:#eff7ff;padding-top:4px;">
+						  <tr>
+						    <td rowspan="3" style="width:25%;border:1px solid #96c2f1;display:table-cell; vertical-align:middle;">
+						        <img alt="" src="images/4.jpg" style="width:60px;height:60px;" >
+						    </td>
+						    <td style="border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >商标名称：tradeNameT</td>
+						  </tr>
+						  <tr> 
+						    <td style="border:1px solid #96c2f1;height:30px; display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >注册号：tradNO_2</td>
+						  </tr>
+						  <tr>
+						    <td style="border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >注册人：trader</td>
+						  </tr>
+						</table>
+					</div>
+					 循环体END -->
+					<div id="jilu3" " ></div>
+					
+					
+				</div>
+				
+				
+				
+				
+				<div class="right-w3l">
+					 <input type="submit" style="padding:12px 25px;" onClick="javascript :history.back(-1);" value="返回">
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--//main-->
+	<!--footer-->
+	<div class="footer">
+		<p>&copy; 2018 Creative Login Form. All rights reserved | Design by
+			<a href="#">南昌奇眸科技有限公司</a>
+		</p>
+	</div>
+	<!--//footer-->
+</body>
+
+</html>

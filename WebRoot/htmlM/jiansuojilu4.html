@@ -1,0 +1,223 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>商标检索系统</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+	<!-- css files -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+	<!-- online-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+	<!-- //online-fonts -->
+	
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript"  src="js/param.js"></script>
+	<script type="text/javascript">
+	
+	//初始化方法接收上个页面传过来的数据。
+		 function init(){
+			 //alert(getParams("username"));
+			$("#id_id_hidden").val(getParams("id"));
+			$("#id_token_hidden").val(getParams("token"));
+		 }
+		$(document).ready(function(){
+		  init();
+		  
+		     //html页面传值过来，获取到ID
+		      var loc = location.href;
+		      loc = loc.replace(/%/g,"\\");
+			  var n1 = loc.length;//地址的总长度
+			  var n2 = loc.indexOf("=");//取得=号的位置
+			  var ido = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+			 // alert(ido);
+			 // alert("http://192.168.1.78:8088/trademark/getfindinfo.do?id="+ido+"&token=***");
+
+		   $.post("http://192.168.1.78:8088/trademark/getfindinfo.do",
+				{
+	    			id:$("#id_id_hidden").val(),
+	    			token:"***"
+	  			},function(result,status){
+		     		//alert(result+status);
+					 //alert(result);
+				    var o = $.parseJSON(result);
+				    //alert(o.imgurl);
+				     
+				     //alert(o.clsid);
+		    
+			         $("#im").html("<img src='"+o.imgurl+"' >");
+			     
+			         $("#tradeName").html(o.tradeName);  //商标名称
+				     $("#registCode").html(o.registCode);    //商标注册号
+				     $("#registPerson").html(o.registPerson);    //申请人名称
+				     $("#reqStartDate").html(o.reqStartDate);    //申请日期
+				     $("#reqStartDate2").html(o.reqStartDate);    //注册日期
+			         $("#reqFinishDate").html(o.reqFinishDate); //专用日期
+			          
+			         $("#classname").html(o.classname); //类别
+		  	});        
+		   
+		});
+	</script>
+	
+	
+</head>
+
+<body>
+<input type='hidden' id="id_id_hidden" value="">
+<input type='hidden' id="id_token_hidden" value="">
+	<!--header-->
+	<div class="header-w3l">
+		<h1>
+			 <span>商标检索系统</span>
+		</h1>
+	</div>
+	<!--//header-->
+	<div class="main-content-agile">
+		<div class="sub-main-w3">
+			<h2>检索记录</h2>
+			<form action="zhuce2.html" method="post">
+				<div class="pom-agile">
+				    
+				    <div >
+					    <table  style="width:100%;height:300px;border:1px solid #96c2f1;background:#eff7ff;padding-top:4px;">
+						  <tr>
+						    <td style="border:1px solid #96c2f1;color:red;height:30px;display:table-cell; vertical-align:middle;text-align:center;font-size:14px;" >
+						       <div id="im"><img src='http://192.168.1.78:8088/show/img/img/07\\01\\22_195.jpg' ></div>
+						    </td>
+						  </tr>
+						  <tr>
+						    <td style="border:1px solid #96c2f1;color:red;height:30px;display:table-cell; vertical-align:middle;text-align:center;font-size:14px;" >
+						       
+						        <div id="classname" style="padding-top:5px;"></div>
+						        <button type="button" style="background:#F4BFB0;width:80px;height:30px;color:red; border-radius:4px;margin-top:5px;">注册中</button>
+						    </td>
+						  </tr>
+						
+						</table>
+					</div>
+				
+				  
+					<div style="margin-top:5px;">
+					    <table  style="color:#616161;font-size:15px;width:100%;height:30px;border:1px solid #96c2f1;background:#CECECE;padding-top:4px;">
+						  <tr> 
+						    <td style=" display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >
+						        <p style="padding-top:5px;">商标名称：</p>
+						    </td>
+						    <td style=" display:table-cell; vertical-align:middle;text-align:right;padding-right:10px;" >
+						        
+						        <div id="tradeName" style="padding-top:5px;">农业用机械</div>
+						    </td>
+						  </tr>
+						</table>
+					</div>
+					
+					
+					<div style="margin-top:5px;" >
+					    <table  style="color:#616161;font-size:15px;width:100%;height:30px;border:1px solid #96c2f1;background:#ffffff;padding-top:4px;">
+						  <tr> 
+						    <td style=" display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >
+						        <p style="padding-top:5px;">商标注册号：</p>
+						    </td>
+						    <td style=" display:table-cell; vertical-align:middle;text-align:right;padding-right:10px;" >
+						        
+						       <div id="registCode" style="padding-top:5px;">2017-03-20</div>
+						    </td>
+						  </tr>
+						</table>
+					</div>
+					<div style="margin-top:5px;" >
+					    <table  style="color:#616161;font-size:15px;width:100%;height:30px;border:1px solid #96c2f1;background:#ffffff;padding-top:4px;">
+						  <tr> 
+						    <td style=" display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >
+						        <p style="padding-top:5px;">申请人名称：</p>
+						    </td>
+						    <td style=" display:table-cell; vertical-align:middle;text-align:right;padding-right:10px;" >
+						        
+						      <div id="registPerson" style="padding-top:5px;">trader</div>
+						    </td>
+						  </tr>
+						</table>
+					</div>
+					<div style="margin-top:5px;" >
+					    <table  style="color:#616161;font-size:15px;width:100%;height:30px;border:1px solid #96c2f1;background:#ffffff;padding-top:4px;">
+						  <tr> 
+						    <td style=" display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >
+						        <p style="padding-top:5px;">申请日期：</p>
+						    </td>
+						    <td style=" display:table-cell; vertical-align:middle;text-align:right;padding-right:10px;" >
+						        
+						      <div id="reqStartDate" style="padding-top:5px;">2016-03-20</div>
+						    </td>
+						  </tr>
+						</table>
+					</div>
+					<div style="margin-top:5px;">
+					    <table  style="color:#616161;font-size:15px;width:100%;height:30px;border:1px solid #96c2f1;background:#ffffff;padding-top:4px;">
+						  <tr> 
+						    <td style=" display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >
+						        <p style="padding-top:5px;">注册日期：</p>
+						    </td>
+						    <td style=" display:table-cell; vertical-align:middle;text-align:right;padding-right:10px;" >
+						        
+						       <div id="reqStartDate2" style="padding-top:5px;">2016-03-20</div>
+						    </td>
+						  </tr>
+						</table>
+					</div>
+					<div style="margin-top:5px;" >
+					    <table  style="color:#616161;font-size:15px;width:100%;height:30px;border:1px solid #96c2f1;background:#ffffff;padding-top:4px;">
+						  <tr> 
+						    <td style=" display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >
+						        <p style="padding-top:5px;">专用期限：</p>
+						    </td>
+						    <td style=" display:table-cell; vertical-align:middle;text-align:right;padding-right:10px;" >
+						        
+						      <div id="reqFinishDate" style="padding-top:5px;">5</div>
+						    </td>
+						  </tr>
+						</table>
+					</div>
+					
+					
+					
+				</div>
+				
+				
+				
+				
+				<div class="right-w3l">
+					 <input type="submit" style="padding:12px 25px;" onClick="javascript :history.back(-1);" value="返回">
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--//main-->
+	<!--footer-->
+	<div class="footer">
+		<p>&copy; 2018 Creative Login Form. All rights reserved | Design by
+			<a href="#">南昌奇眸科技有限公司</a>
+		</p>
+	</div>
+	<!--//footer-->
+</body>
+
+</html>

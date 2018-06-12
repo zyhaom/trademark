@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Aspect Ratio with Preview Pane | Jcrop Demo</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-form.js"></script>
+<script type="text/javascript"  src="js/param.js"></script>
+
+<script type="text/javascript">
+
+//初始化方法接收上个页面传过来的数据。
+ function init(){
+	 //alert(getParams("username"));
+	$("#id_username_hidden").val(getParams("username"));
+	$("#id_username").val(getParams("username"));
+	$("#id_token_hidden").val(getParams("token"));
+ }
+		 
+		 
+$(document).ready(function() {  
+
+		init();
+// 		$.post("http://192.168.1.78:8088//trademark/RelevantType.do?option=sel&typeID=01",function(result){
+// 		    var arra = result.split("~");
+// 		    for(var key in arra) {
+// 				$('#'+arra[key]).attr('checked',true); 
+// 			} 
+// 		});
+		  
+       $("#formLogin").ajaxForm(function(data){ 
+       		//alert(data);
+       		var o = $.parseJSON(data);
+       		if(o.getCode == 0){
+       			alert(o.getMessage);  
+        		//alert(o.geturl);   
+       	 		var s = 'subImg.html?username='+$("#id_username").val()+
+       	 				'&pic='+o.geturl.substr(o.geturl.lastIndexOf("/")+1)+
+       	 				'&bigclass='+'01'+
+       	 				'&smallclass='+'0101'+
+       	 				'&precision='+'0.6'+
+       	 				'&imgnetURL='+o.geturl+
+       	 				'&status=0'+
+       	 				'&natureWidth='+o.natureWidth+
+       	 				'&natureHeight='+o.natureHeight+
+       	 				'&token='+$("#id_token_hidden").val();
+       	 				
+				//alert(o.geturl.substr(o.geturl.lastIndexOf("/")+1));
+				//alert(s);
+       	 		window.location.href=s;
+       		}
+        	
+       });            
+});
+</script>
+
+</head>
+<body>
+<input type='hidden' id="id_username_hidden" value="">
+<input type='hidden' id="id_token_hidden" value="">
+	 <form id="formLogin" enctype="multipart/form-data" action="http://192.168.1.78:8088/trademark/postimg.do" method="post" target="uploadfrm">  
+	    <input type="hidden" name="username" id="id_username" value="1335929"/>  
+	    <input type="file" name="file" value="选择图片"/>  
+	    <input id="" type="submit" value="保存"/>  
+	 </form>
+  
+   <iframe name="uploadfrm" id="uploadfrm" style="display: none;"></iframe>
+
+<hr />
+<select name="carlist" id="selectID">
+<OPTION VALUE="01">化学原料</OPTION>
+<OPTION VALUE="02">颜料油漆</OPTION>
+<OPTION VALUE="03">日化用品</OPTION>
+<OPTION VALUE="04">燃料油脂</OPTION>
+<OPTION VALUE="05">医用医药</OPTION>
+<OPTION VALUE="06">金属材料</OPTION>
+<OPTION VALUE="07">机械设备</OPTION>
+<OPTION VALUE="08">手动器械</OPTION>
+<OPTION VALUE="09">科学仪器</OPTION>
+<OPTION VALUE="10">医疗器械</OPTION>
+<OPTION VALUE="11">灯具空调</OPTION>
+<OPTION VALUE="12">运载工具</OPTION>
+<OPTION VALUE="13">军火烟花</OPTION>
+<OPTION VALUE="14">珠宝钟表</OPTION>
+<OPTION VALUE="15">乐器用品</OPTION>
+<OPTION VALUE="16">办公用品</OPTION>
+<OPTION VALUE="17">橡胶制品</OPTION>
+<OPTION VALUE="18">皮革皮具</OPTION>
+<OPTION VALUE="19">建筑材料</OPTION>
+<OPTION VALUE="20">家具制品</OPTION>
+<OPTION VALUE="21">厨房洁具</OPTION>
+<OPTION VALUE="22">绳网袋篷</OPTION>
+<OPTION VALUE="23">纱线丝品</OPTION>
+<OPTION VALUE="24">布料传单</OPTION>
+<OPTION VALUE="25">服装鞋帽</OPTION>
+<OPTION VALUE="26">纽扣拉链</OPTION>
+<OPTION VALUE="27">地毯席垫</OPTION>
+<OPTION VALUE="28">健身器材</OPTION>
+<OPTION VALUE="29">肉类食品</OPTION>
+<OPTION VALUE="30">方便食品</OPTION>
+<OPTION VALUE="31">饲料种籽</OPTION>
+<OPTION VALUE="32">啤酒饮料</OPTION>
+<OPTION VALUE="33">含酒精酒</OPTION>
+<OPTION VALUE="34">烟草烟具</OPTION>
+<OPTION VALUE="35">广告销售</OPTION>
+<OPTION VALUE="36">金融物管</OPTION>
+<OPTION VALUE="37">建筑修理</OPTION>
+<OPTION VALUE="38">通讯服务</OPTION>
+<OPTION VALUE="39">运输储藏</OPTION>
+<OPTION VALUE="40">材料加工</OPTION>
+<OPTION VALUE="41">教育娱乐</OPTION>
+<OPTION VALUE="42">网站法律</OPTION>
+<OPTION VALUE="43">餐饮酒店</OPTION>
+<OPTION VALUE="44">医疗园艺</OPTION>
+<OPTION VALUE="45">社会服务</OPTION>
+</select>
+</body>
+</html>
+

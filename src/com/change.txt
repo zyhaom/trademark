@@ -1,0 +1,8 @@
+/trademark/src/com/util/FileUtil.java 增加 getWidthAndHeight 方法
+
+/trademark/src/com/servlet/upload/UploadServlet.java
+int[] widthAndHeight = FileUtil.getWidthAndHeight(absolutePath);
+				if(widthAndHeight[0]!=0&&widthAndHeight[1]!=0){
+					outMap.put("natureWidth", widthAndHeight[0]);
+					outMap.put("natureHeight", widthAndHeight[1]);
+				}

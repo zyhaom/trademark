@@ -47,7 +47,9 @@ public class RelevantType extends HttpServlet {
 					returnStr += it.next();
 					returnStr += "~";
 				}
-				returnStr = returnStr.substring(0, returnStr.length()-1);
+				if(returnStr.length()>0){
+					returnStr = returnStr.substring(0, returnStr.length()-1);
+				}
 				out.print(returnStr);
 			}
 		} catch (Exception e) {

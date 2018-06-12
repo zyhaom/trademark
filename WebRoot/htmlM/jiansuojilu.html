@@ -1,0 +1,156 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>商标检索系统</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+	<!-- css files -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+	<!-- online-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+	<!-- //online-fonts -->
+	
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript"  src="js/param.js"></script>
+	<script type="text/javascript">
+	
+		//初始化方法接收上个页面传过来的数据。
+		 function init(){
+			 //alert(getParams("username"));
+			$("#id_username_hidden").val(getParams("username"));
+			$("#id_token_hidden").val(getParams("token"));
+		 }
+        
+		$(document).ready(function(){
+		  init();
+		  
+	  		$.post("http://192.168.1.78:8088/trademark/getsearchRecord.do",
+				{
+	    			username:$("#id_username_hidden").val(),
+	    			token:"***"
+	  			},function(result,status){
+		     		//alert(result+status);
+					
+ 				var o = $.parseJSON( result );
+		    	//alert(o.getList[0].recordclass);
+		     	//alert(o.getList.length);
+		     
+		     	for(var i=0;i<o.getList.length;i++){
+			          $("#jilu").before("<div  onclick=window.location.href='jiansuojilu2.html?recordId="+o.getList[i].recordId+"'> "+
+						    "<table  style='font-size:15px;width:100%;height:90px;border:1px solid #96c2f1;background:#eff7ff;padding-top:4px;'>"+
+							  "<tr>"+
+							    "<td rowspan='3' style='width:25%;border:1px solid #96c2f1;display:table-cell; vertical-align:middle;'>"+
+							        "<img alt='' src='http://192.168.1.78:8088/show/img/temp/img/"+o.getList[i].pic+"' style='width:60px;height:60px;' >"+
+							        
+							    "</td>"+
+							    "<td style='width:18%;border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >检索方式：</td>"+
+							    "<td style='border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >"+o.getList[i].findcan+"</td>"+
+							  "</tr>"+
+							  "<tr>"+ 
+							    "<td style='width:18%;border:1px solid #96c2f1;height:30px; display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >检索分类：</td>"+
+							    "<td style='border:1px solid #96c2f1;height:30px; display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >"+o.getList[i].recordclass+"</td>"+
+							  "</tr>"+
+							  "<tr>"+
+							    "<td style='width:18%;border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >检索时间：</div></td>"+
+							    "<td style='border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;' >"+o.getList[i].findtime+"</td>"+
+							  "</tr>"+
+							"</table>"+
+						"</div>");
+			         
+			     }
+		     
+		          //$("#recordclass").html(o.getList[0].recordclass);  
+			    // $("#findtime").html(o.getList[0].findtime);
+			    // $("#findcan").html(o.getList[0].findcan);
+		  	});
+		});
+		
+		
+		
+		
+		
+	</script>
+	
+</head>
+
+<body>
+<input type='hidden' id="id_username_hidden" value="">
+<input type='hidden' id="id_token_hidden" value="">
+	<!--header-->
+	<div class="header-w3l">
+		<h1>
+			 <span>商标检索系统</span>
+		</h1>
+	</div>
+	<!--//header-->
+	<div class="main-content-agile">
+		<div class="sub-main-w3">
+			<h2>检索记录</h2>
+			<form action="zhuce2.html" method="post">
+				<div class="pom-agile">
+				  <!-- 循环体 
+					<div  onclick="window.location.href='jiansuojilu2.html';">
+					    <table  style="font-size:15px;width:100%;height:90px;border:1px solid #96c2f1;background:#eff7ff;padding-top:4px;">
+						  <tr>
+						    <td rowspan="3" style="width:25%;border:1px solid #96c2f1;display:table-cell; vertical-align:middle;">
+						        <img alt="" src="http://192.168.1.78:8088/show/img/temp/img/13359299756_1526982369491.jpg" style="width:60px;height:60px;" >
+						        
+						    </td>
+						    <td style="width:18%;border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >检索方式：</td>
+						    <td style="border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" ><div id="findcan"></div></td>
+						  </tr>
+						  <tr> 
+						    <td style="width:18%;border:1px solid #96c2f1;height:30px; display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >检索分类：</td>
+						    <td style="border:1px solid #96c2f1;height:30px; display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" ><div id="recordclass"></div> </td>
+						  </tr>
+						  <tr>
+						    <td style="width:18%;border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" >检索时间：</div></td>
+						    <td style="border:1px solid #96c2f1;height:30px;display:table-cell; vertical-align:middle;text-align:left;padding-left:10px;" ><div id="findtime"></div></td>
+						  </tr>
+						</table>
+					</div>
+					  循环体END -->
+					<div id="jilu" " ></div>
+					
+					
+				</div>
+				
+				
+				
+				
+				<div class="right-w3l">
+					 <input type="submit" style="padding:12px 25px;" onClick="javascript :history.back(-1);" value="返回">
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--//main-->
+	<!--footer-->
+	<div class="footer">
+		<p>&copy; 2018 Creative Login Form. All rights reserved | Design by
+			<a href="#">南昌奇眸科技有限公司</a>
+		</p>
+	</div>
+	<!--//footer-->
+</body>
+
+</html>

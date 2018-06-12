@@ -1,11 +1,17 @@
 package com.util;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
+import javax.imageio.ImageIO;
 
 import com.util.prop.CommParameter;
 
@@ -20,6 +26,7 @@ public class FileUtil {
 	public static List<String> fileList = new ArrayList<String>();
 	
 	/**
+	 * @throws Exception 
 	 * @Author:HaoMing(郝明)
 	 * @Project_name:trademark
 	 * @Full_path:com.util.FileUtil.java
@@ -27,8 +34,11 @@ public class FileUtil {
 	 * @Return_type:void
 	 * @Desc :
 	 */
-	public static void main(String[] args) {
-		long startTime = System.currentTimeMillis();
+	public static void main(String[] args) throws Exception {
+		int[] r = getWidthAndHeight("E:\\trademark\\img\\01\\01\\1.jpg");
+		System.out.println(r[0]+":"+r[1]);
+		
+		/*long startTime = System.currentTimeMillis();
 //		System.out.println(CommParameter.getCommParameterByKey("filePath"));
 		
 		List<String> list = listFiles(CommParameter.getCommParameterByKey("filePath"));
@@ -59,7 +69,7 @@ public class FileUtil {
 		
 //		test();
 		long endTime = System.currentTimeMillis();
-		System.out.println(endTime-startTime);
+		System.out.println(endTime-startTime);*/
 	}
 	
 	public static List<String> listFiles(String path){
@@ -81,6 +91,30 @@ public class FileUtil {
 		}
 		return fileList;
 	}
+	
+	/**
+	 * 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 * @Author:HaoMing(郝明)
+	 * @Project_name:trademark
+	 * @Full_path:com.util.FileUtil.java
+	 * @Date:@2018 2018-6-12 下午1:55:30
+	 * @Return_type:int[]
+	 * @Desc : 根据图片的全路径得到图片的实际宽高数组
+	 */
+	public static int[] getWidthAndHeight(String imgFullPath) throws Exception{
+		int[] returnInt = {0,0};
+		if(imgFullPath.length()==0){
+			return returnInt;
+		}
+		BufferedImage sourceImg = ImageIO.read(new FileInputStream(new File(imgFullPath))); 
+		returnInt[0] = sourceImg.getWidth();
+		returnInt[1] = sourceImg.getHeight();
+		return returnInt;
+	} 
+	
+	
 	
 	
 	

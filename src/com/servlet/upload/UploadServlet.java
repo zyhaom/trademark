@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.log4j.Logger;
 
 import com.util.CommUtil;
+import com.util.FileUtil;
 import com.util.JsonUtil;
 import com.util.prop.CommParameter;
 
@@ -55,6 +56,7 @@ public class UploadServlet extends HttpServlet {
 				outMap.put("getMessage", "token过期");
 				outMap.put("geturl", "");
 			}else{
+				String absolutePath="";
 //				String uploadDir = getServletContext().getRealPath("/uploadDir");
 				String uploadDir = CommParameter.getCommParameterByKey("tempDir")+File.separator+"img";
 				
@@ -121,7 +123,7 @@ public class UploadServlet extends HttpServlet {
 							
 							File pathDest = new File(uploadDir, tempImg);
 							fi.write(pathDest);
-							
+							absolutePath = pathDest.getAbsolutePath();
 //							tempImg = "http://101.200.46.114:8088/show/img/temp/img/"+tempImg;
 							tempImg = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/show/img/"+"temp/img/"+tempImg;
 							
@@ -141,6 +143,11 @@ public class UploadServlet extends HttpServlet {
 				outMap.put("getCode", "0");
 				outMap.put("getMessage", "上传成功");
 				outMap.put("geturl", tempImg);
+				int[] widthAndHeight = FileUtil.getWidthAndHeight(absolutePath);
+				if(widthAndHeight[0]!=0&&widthAndHeight[1]!=0){
+					outMap.put("natureWidth", widthAndHeight[0]);
+					outMap.put("natureHeight", widthAndHeight[1]);
+				}
 			}
 			
 			String sentStr = JsonUtil.mapToJson(outMap);

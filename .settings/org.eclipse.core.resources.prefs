@@ -1,5 +1,7 @@
-#Tue May 29 14:42:16 CST 2018
+#Mon Jun 11 14:55:34 CST 2018
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/db/trigger.sql=GBK
+encoding//WebRoot/htmlM/js/luoji.js=GBK
 encoding//WebRoot/page/upload.html=UTF-8
 encoding//src/com/dll/tm/TradeMarkDll.java=UTF-8
 encoding//src/com/servlet/option/SensitivePic.java=UTF-8

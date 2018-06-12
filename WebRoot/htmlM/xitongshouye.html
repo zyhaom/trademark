@@ -1,0 +1,1664 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>商标检索系统</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	
+	<script src="js/luoji.js"></script>
+    <script type="text/javascript"  src="js/xuanzeXiaolei.js"></script>
+    <script type="text/javascript"  src="js/param.js"></script>
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	
+	<script type="text/javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+
+
+		//初始化方法接收上个页面传过来的数据。
+		 function init(){
+			 //alert(getParams("username"));
+			$("#id_username_hidden").val(getParams("username"));
+			$("#id_token_hidden").val(getParams("token"));
+		 }
+
+		$(document).ready(function(){
+			init();
+		});
+		 
+	</script>
+	<!-- Meta tag Keywords -->
+	<!-- css files -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+	<!-- online-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+	<!-- //online-fonts -->
+	
+	<style type="text/css">
+	  body {
+    background: url(images/6.jpg)no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    text-align: center;
+	font-family: 'Roboto', sans-serif;
+	height: 100vh;
+}
+	</style>
+	
+</head>
+
+<body>
+<input type='hidden' id="id_username_hidden" value="">
+<input type='hidden' id="id_token_hidden" value="">
+ <script type="text/javascript">
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    function hrefFunc(o){
+    	if(o==1){//检索记录
+    		window.location.href='jiansuojilu.html?username='+$("#id_username_hidden").val()+'&token='+$("#id_token_hidden").val();
+    	}
+    	if(o==2){//跨类检索
+    		window.location.href='kualei.html?token='+$("#id_token_hidden").val();
+    	}
+    	if(o==3){//敏感检索
+    		window.location.href='mingantu.html?token='+$("#id_token_hidden").val();
+    	}
+    	if(o==4){//敏感检索
+    		window.location.href='preSubImg.html?token='+$("#id_token_hidden").val()+'&username='+$("#id_username_hidden").val();
+    	}
+    }
+    
+    //全选小类
+    function allSelect(check_v, checkname)
+	{
+	    var v_item = document.getElementsByName(check_v);
+	    var items = document.getElementsByName(checkname);
+	    for (var i = 0; i < items.length; ++i)
+	    {
+	        if (v_item[0].checked)
+	        {
+	            items[i].checked = true;
+	        }
+	        else
+	        {
+	            items[i].checked = false;
+	        }
+	    }
+	}
+   
+    
+    
+</script>
+	<!--header-->
+	<div class="header-w3l">
+		<h1>
+			 <span>商标检索系统</span>
+		</h1>
+	</div>
+	<!--//header-->
+	<div class="main-content-agile">
+		<div class="sub-main-w3">
+			<h2 style="font-size:1.3em;margin-bottom:20px;text-align:left;">
+			       <a href="#" style="color:#FFFFFF;text-decoration:none;display:none;">检索记录</a>  
+			    <div class="right-w3l" style="margin-top:10px;">
+					<input type="submit" style="padding:12px 15px;margin-top:5px;" onclick="hrefFunc(1);" value="检索记录">
+					<input type="submit" style="padding:12px 15px;margin-top:5px;" onclick="hrefFunc(2);" value="跨类检索">
+					<input type="submit" style="padding:12px 15px;margin-top:5px;" onclick="hrefFunc(3);" value="敏感检索">
+					<input type="submit" style="padding:12px 15px;margin-top:5px;" onclick="hrefFunc(4);" value="扣图检索">
+				</div>
+			</h2>
+			
+			<form action="#" method="post">
+				<div class="pom-agile" style="display:none;">
+					
+					<input placeholder="关键词" name="Name" class="user" type="tel" required="">
+				</div>
+				
+				<div class="sub-w3l">
+					<div class="sub-agile" style="color:#FFFFFF;font-size:18px;">
+					   <div style="float:left;">
+					           &nbsp;&nbsp;&nbsp;&nbsp;上传图片: &nbsp;&nbsp;
+					   </div>
+					   <div style="float:left;margin-left:20px;">
+					    <input name="file" onchange="imgPreview(this)" type="file" name="img" multiple="multiple" />
+					   </div>
+					</div>
+				</div>
+				
+				<div class="sub-w3l">
+					<div class="sub-agile" style="color:#FFFFFF;font-size:18px;">
+					  <table >
+					   
+					   <tr>
+					     <td style="width:30%;"> &nbsp;&nbsp;商标状态</td>
+					     <td style="text-align:left;padding-left:20px;">
+						     <input type="radio" name="radio" value="1" checked>全部
+							 <input type="radio" name="radio" value="2">已注册
+							 <input type="radio" name="radio" value="3" >申请中
+						</td>
+					   </tr>
+					  </table>
+					</div>
+				</div>
+			    
+			    <div class="pom-agile" style="margin-top:20px;" onClick="xuanzeFenlei(1)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#FFFFFF';" >
+					分类选择 
+				</div>
+				<!-- 选择分类大类名称  -->
+				  <div id="yilei"  style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="xuanzeDL(01)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        01化工原料
+				      </div>
+				      <div onclick="xuanzeDL(02)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        02颜料油漆
+				      </div>
+				      <div onclick="xuanzeDL(03)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        03日化用品
+				      </div>
+				      <div onclick="xuanzeDL(04)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        04燃料油脂
+				      </div>
+				      <div onclick="xuanzeDL(05)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        05医用医药
+				      </div>
+				      <div onclick="xuanzeDL(06)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        06金属材料
+				      </div>
+				      <div onclick="xuanzeDL(07)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        07机械设备
+				      </div>
+				      <div onclick="xuanzeDL(08)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        08手工机械
+				      </div>
+				      <div onclick="xuanzeDL(09)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        09科学仪器
+				      </div>
+				      <div onclick="xuanzeDL(10)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        10医疗器械
+				      </div>
+				      <div onclick="xuanzeDL(11)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        11灯具空调
+				      </div>
+				      <div onclick="xuanzeDL(12)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        12运输工具
+				      </div>
+				      <div onclick="xuanzeDL(13)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        13军火烟火
+				      </div>
+				      <div onclick="xuanzeDL(14)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        14珠宝钟表
+				      </div>
+				      <div onclick="xuanzeDL(15)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        15乐器用品
+				      </div>
+				      <div onclick="xuanzeDL(16)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        16办公用品
+				      </div>
+				      <div onclick="xuanzeDL(17)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        17橡胶制品
+				      </div>
+				      <div onclick="xuanzeDL(18)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        18皮革皮具
+				      </div>
+				      <div onclick="xuanzeDL(19)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        19建筑材料
+				      </div>
+				      <div onclick="xuanzeDL(20)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        20家具制品
+				      </div>
+				      <div onclick="xuanzeDL(21)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        21厨房洁具
+				      </div>
+				      <div onclick="xuanzeDL(22)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        22绳网袋蓬
+				      </div>
+				      <div onclick="xuanzeDL(23)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        23纱线丝品
+				      </div>
+				      <div onclick="xuanzeDL(24)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        24布料传单
+				      </div>
+				      <div onclick="xuanzeDL(25)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        25服装鞋帽
+				      </div>
+				      <div onclick="xuanzeDL(26)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        26纽扣拉链
+				      </div>
+				      <div onclick="xuanzeDL(27)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        27地毯席垫
+				      </div>
+				      <div onclick="xuanzeDL(28)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        28健身器材
+				      </div>
+				      <div onclick="xuanzeDL(29)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        29肉类食品
+				      </div>
+				      <div onclick="xuanzeDL(30)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        30方便食品
+				      </div>
+				      <div onclick="xuanzeDL(31)"  onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        31饲料种籽
+				      </div>
+				      <div onclick="xuanzeDL(32)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        32啤酒饮料
+				      </div>
+				      <div onclick="xuanzeDL(33)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        33含酒精酒
+				      </div>
+				      <div onclick="xuanzeDL(34)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        34烟草烟具
+				      </div>
+				      <div onclick="xuanzeDL(35)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        35广告销售
+				      </div>
+				      <div  onclick="xuanzeDL(36)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        36金融物管
+				      </div>
+				      <div onclick="xuanzeDL(37)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        37建筑修理
+				      </div>
+				      <div onclick="xuanzeDL(38)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        38通讯服务
+				      </div>
+				      <div onclick="xuanzeDL(39)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        39运输储藏
+				      </div>
+				      <div onclick="xuanzeDL(40)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        40材料加工
+				      </div>
+				      <div onclick="xuanzeDL(41)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        41教育娱乐
+				      </div>
+				      <div onclick="xuanzeDL(42)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        42网站法律
+				      </div>
+				      <div onclick="xuanzeDL(43)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        43餐饮住宿
+				      </div>
+				      <div onclick="xuanzeDL(44)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        44医疗园艺
+				      </div>
+				      <div onclick="xuanzeDL(45)" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        45社会服务
+				      </div>
+				  </div>
+				<!-- END -->
+				<!-- 选择分类下小类   01类 -->
+				   <div id="erlei01" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox01','VoteOption01')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox01"  value=""> 全选/全不选
+				      </div>
+				      
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0101工业气体"> 0101工业气体
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0102化工原料"> 0102化工原料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0103放射性化学品"> 0103放射性化学品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0104工科业化学品"> 0104工科业化学品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0105农林园业化学品"> 0105农林园业化学品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0106化学试剂"> 0106化学试剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0107摄影用化学品"> 0107摄影用化学品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0108人造合成树脂和塑料"> 0108人造合成树脂和塑料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0109肥料"> 0109肥料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0110灭防火合成物"> 0110灭防火合成物
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0111淬火用化学制剂"> 0111淬火用化学制剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0112焊接用化学制剂"> 0112焊接用化学制剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0113食药用化学品"> 0113食药用化学品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0114鞣料及皮革用化学品"> 0114鞣料及皮革用化学品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0115工业用粘合剂和胶"> 0115工业用粘合剂和胶
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0116纸浆"> 0116纸浆
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption01"  value="0117能源"> 0117能源
+				      </div>
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('01','VoteOption01')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				
+				<!-- 选择分类下小类   02类 -->
+				   <div id="erlei02" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox02','VoteOption02')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox02"  value=""> 全选/全不选
+				      </div>
+				      
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption02"  value="0201染料，媒染剂"> 0201染料，媒染剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption02"  value="0202颜料"> 0202颜料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption02"  value="0203食品着色剂"> 0203食品着色剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption02"  value="0204油墨"> 0204油墨
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption02"  value="0205涂料，油漆及附料"> 0205涂料，油漆及附料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption02"  value="0206天然树脂"> 0206天然树脂
+				      </div>
+				      
+				         <br/>
+				         <!--提交 -->
+					      <div>
+					           <div  onclick="checkbox('02','VoteOption02')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div><br>
+					          <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   03类 -->
+				   <div id="erlei03" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox03','VoteOption03')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox03"  value=""> 全选/全不选
+				      </div>
+				      
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0301洗洁物品"> 0301洗洁物品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0302清洁制剂"> 0302清洁制剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0303抛光制剂"> 0303抛光制剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0304研磨用材料"> 0304研磨用材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0305香料，香精油"> 0305香料，香精油
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0306化妆品"> 0306化妆品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0307牙用制剂"> 0307牙用制剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0308熏料"> 0308熏料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0309动物用化妆品"> 0309动物用化妆品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption03"  value="0310室内芳香剂"> 0310室内芳香剂
+				      </div>
+				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('03','VoteOption03')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   04类 -->
+				   <div id="erlei04" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox04','VoteOption04')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox04"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0401工业用油"> 0401工业用油
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0402气、液燃料"> 0402气、液燃料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0403固体燃料"> 0403固体燃料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0404工业用蜡"> 0404工业用蜡
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0405照明用蜡"> 0405照明用蜡
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0406吸灰用合成物"> 0406吸灰用合成物
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption04"  value="0407能源"> 0407能源
+				      </div>
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('04','VoteOption04')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   05类 -->
+				   <div id="erlei05" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox05','VoteOption05')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox05"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0501药品"> 0501药品
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0502营养品"> 0502营养品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0503净化制剂"> 0503净化制剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0504兽药"> 0504兽药
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0505杀虫剂"> 0505杀虫剂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0506卫生用品"> 0506卫生用品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0507牙科用料"> 0507牙科用料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption05"  value="0508单一商品"> 0508单一商品
+				      </div>
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('05','VoteOption05')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   06类 -->
+				   <div id="erlei06" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox06','VoteOption06')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox06"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0601普通金属及其合金"> 0601普通金属及其合金
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0602普通金属管及其配件"> 0602普通金属管及其配件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0603金属建筑材料"> 0603金属建筑材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0604铁路用金属材料"> 0604铁路用金属材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0605非电气用缆索和金属线"> 0605非电气用缆索和金属线
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0606缆绳用非电气金属附件"> 0606缆绳用非电气金属附件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0607钉及标准紧固件"> 0607钉及标准紧固件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0608家具及门窗的金属附件"> 0608家具及门窗的金属附件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0609日用五金器具"> 0609日用五金器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0610非电子锁"> 0610非电子锁
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0611保险箱柜"> 0611保险箱柜
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0612金属器具"> 0612金属器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0613金属容器"> 0613金属容器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0614金属标牌"> 0614金属标牌
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0615动物用金属制品"> 0615动物用金属制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0616焊接用金属材料"> 0616焊接用金属材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0617锚，浮动船坞"> 0617锚，浮动船坞
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0618手铐"> 0618手铐
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0619金属浆叶、风标"> 0619金属浆叶、风标
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0620金属植物保护器"> 0620金属植物保护器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0621捕野兽陷阱"> 0621捕野兽陷阱
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0622普通金属艺术品"> 0622普通金属艺术品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0623矿石，矿砂"> 0623矿石，矿砂
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption06"  value="0624金属棺"> 0624金属棺
+				      </div>
+				      
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('06','VoteOption06')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   07类 -->
+				   <div id="erlei07" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox07','VoteOption07')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox07"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0701农业用机械"> 0701农业用机械
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0702渔牧业用机械"> 0702渔牧业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0703木材加工及生产用机械"> 0703木材加工及生产用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0704纸制品工业用机械"> 0704纸制品工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0705印刷工业用机械"> 0705印刷工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0706纺织、针织工业用机械"> 0706纺织、针织工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0707印染工业用机械"> 0707印染工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0708制茶工业用机械"> 0708制茶工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0709食品业用机械"> 0709食品业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0710酿造工业用机械"> 0710酿造工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0711烟草工业用机械"> 0711烟草工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0712皮革工业用机械"> 0712皮革工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0713缝纫、制鞋工业用机械"> 0713缝纫、制鞋工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0714自行车工业用设备"> 0714自行车工业用设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0715陶瓷、砖、瓦制造机械"> 0715陶瓷、砖、瓦制造机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0716雕刻机"> 0716雕刻机
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0717制电池机械"> 0717制电池机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0718日用杂品加工机械"> 0718日用杂品加工机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0719制搪瓷机械"> 0719制搪瓷机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0720制灯泡机械"> 0720制灯泡机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0721包装机械"> 0721包装机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0722民用煤加工机械"> 0722民用煤加工机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0723厨房家用器具"> 0723厨房家用器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0724洗衣机"> 0724洗衣机
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0725制药工业用机械"> 0725制药工业用机械
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0726橡胶、塑料工业机械"> 0726橡胶、塑料工业机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0727玻璃工业用机械"> 0727玻璃工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0728化肥设备"> 0728化肥设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0729其他化学工业用机械"> 0729其他化学工业用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0730地质勘探用机械"> 0730地质勘探用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0731冶炼工业用设备"> 0731冶炼工业用设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0732石油开采、精炼用设备"> 0732石油开采、精炼用设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0733工程用机械"> 0733工程用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0734起重运输机械"> 0734起重运输机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0735锻压设备"> 0735锻压设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0736铸造机械"> 0736铸造机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0737蒸气动力设备"> 0737蒸气动力设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0738内燃动力设备"> 0738内燃动力设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0739风力、水力动力设备"> 0739风力、水力动力设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0740制办公用针钉机械"> 0740制办公用针钉机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0741制钮扣拉链机械"> 0741制钮扣拉链机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0742机床，金属加工机械"> 0742机床，金属加工机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0743非手动的手持工具"> 0743非手动的手持工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0744静电、电子工业用设备"> 0744静电、电子工业用设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0745光学工业用设备"> 0745光学工业用设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0746气体分离设备"> 0746气体分离设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0747喷漆机具"> 0747喷漆机具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0748发电机、马达和引擎"> 0748发电机、马达和引擎
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0749液压元件，气动元件"> 0749液压元件，气动元件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0750传动用联轴节，传动带"> 0750传动用联轴节，传动带
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0751焊接机械"> 0751焊接机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0752清洁、废物处理机械"> 0752清洁、废物处理机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0753单一商品"> 0753单一商品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption07"  value="0754电镀设备"> 0754电镀设备
+				      </div>
+				      
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('07','VoteOption07')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   08类 -->
+				   <div id="erlei08" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox08','VoteOption08')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox08"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0801手动研磨器具"> 0801手动研磨器具
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0802小农具"> 0802小农具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0803林业、园艺用手工具"> 0803林业、园艺用手工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0804畜牧业用手工具"> 0804畜牧业用手工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0805渔业用手工具"> 0805渔业用手工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0806理发工具，修指甲刀"> 0806理发工具，修指甲刀
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0807非动力手工具"> 0807非动力手工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0808非动力手工器具"> 0808非动力手工器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0809专业用手工具"> 0809专业用手工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0810刀剪"> 0810刀剪
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0811除火器外的随身武器"> 0811除火器外的随身武器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption08"  value="0812餐具刀、叉、匙"> 0812餐具刀、叉、匙
+				      </div>
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('08','VoteOption08')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   09类 -->
+				   <div id="erlei09" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox09','VoteOption09')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox09"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0901电子计算机"> 0901电子计算机
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0902记录、自动售货机"> 0902记录、自动售货机
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0903其他办公用机械"> 0903其他办公用机械
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0904衡器"> 0904衡器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0905量具"> 0905量具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0906信号器具"> 0906信号器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0907通讯导航设备"> 0907通讯导航设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0908音像设备"> 0908音像设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0909摄影、电影用具"> 0909摄影、电影用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0910测量仪器，科学仪器"> 0910测量仪器，科学仪器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0911光学仪器"> 0911光学仪器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0912光电传输材料"> 0912光电传输材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0913电器用晶体"> 0913电器用晶体
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0914电器设备及控制装置"> 0914电器设备及控制装置
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0915电解装置"> 0915电解装置
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0916灭火器具"> 0916灭火器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0917切割、焊接设备"> 0917切割、焊接设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0918工业用X光机械设备"> 0918工业用X光机械设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0919安全救护器具"> 0919安全救护器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0920警报装置，电铃"> 0920警报装置，电铃
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0921眼镜及附件"> 0921眼镜及附件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0922电池，充电器"> 0922电池，充电器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0923电影片，已曝光材料"> 0923电影片，已曝光材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption09"  value="0924其他"> 0924其他
+				      </div>
+				      
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('09','VoteOption09')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类  10类 -->
+				   <div id="erlei10" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox10','VoteOption10')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox10"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1001外科、医疗用设备"> 1001外科、医疗用设备
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1002牙科设备"> 1002牙科设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1003医疗用电、核子、电疗和X光设备"> 1003医疗用电、核子、电疗和X光设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1004医疗用辅助器具，设备"> 1004医疗用辅助器具，设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1005奶嘴，奶瓶"> 1005奶嘴，奶瓶
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1006性用品"> 1006性用品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1007假肢，假发和假器官"> 1007假肢，假发和假器官
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1008矫形矫正用品"> 1008矫形矫正用品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption10"  value="1009缝合用材料"> 1009缝合用材料
+				      </div>
+				      
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('10','VoteOption10')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类  11类 -->
+				   <div id="erlei11" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox11','VoteOption11')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox11"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1101照明用设备"> 1101照明用设备
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1102喷焊灯"> 1102喷焊灯
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1103汽灯，油灯"> 1103汽灯，油灯
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1104烹调及加热设备"> 1104烹调及加热设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1105制冷、冷藏设备"> 1105制冷、冷藏设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1106干燥、通风、空调设备"> 1106干燥、通风、空调设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1107加温、蒸汽设备"> 1107加温、蒸汽设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1108水暖管件"> 1108水暖管件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1109卫生设备"> 1109卫生设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1110消毒和净化设备"> 1110消毒和净化设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1111小型取暖器"> 1111小型取暖器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1112不属于别类的打火器具"> 1112不属于别类的打火器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption11"  value="1113核能反应设备"> 1113核能反应设备
+				      </div>
+				      
+				      				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('11','VoteOption11')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类  12类 -->
+				   <div id="erlei12" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox12','VoteOption12')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox12"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1201火车及其零部件"> 1201火车及其零部件
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1202汽车、电车"> 1202汽车、电车
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1203摩托车其零部件"> 1203摩托车其零部件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1204自行车、三轮车"> 1204自行车、三轮车
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1205缆车，架空运输设备"> 1205缆车，架空运输设备
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1206轮椅，推车，童车"> 1206轮椅，推车，童车
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1207畜力车辆"> 1207畜力车辆
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1208轮胎及轮胎修理工具"> 1208轮胎及轮胎修理工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1209空用运载工具"> 1209空用运载工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1210水用运载工具"> 1210水用运载工具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption12"  value="1211运载工具零部件"> 1211运载工具零部件
+				      </div>
+				      		      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('12','VoteOption12')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类  13类 -->
+				   <div id="erlei13" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox13','VoteOption13')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox13"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption13"  value="1301火器及子弹"> 1301火器及子弹
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption13"  value="1302爆炸物"> 1302爆炸物
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption13"  value="1303烟火，爆竹"> 1303烟火，爆竹
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption13"  value="1304防护用喷雾"> 1304防护用喷雾
+				      </div>
+				      	      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('13','VoteOption13')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类  14类 -->
+				   <div id="erlei14" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox14','VoteOption14')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox14"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption14"  value="1401贵重金属及其合金"> 1401贵重金属及其合金
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption14"  value="1402贵重金属盒"> 1402贵重金属盒
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption14"  value="1403珠宝及贵重金属制纪念品"> 1403珠宝及贵重金属制纪念品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption14"  value="1404钟，表，计时器"> 1404钟，表，计时器
+				      </div>
+				      	      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('14','VoteOption14')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类  15类 -->
+				   <div id="erlei15" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox15','VoteOption15')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox15"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption15"  value="1501乐器"> 1501乐器
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption15"  value="1502乐器辅助用品"> 1502乐器辅助用品
+				      </div> 
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('15','VoteOption15')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				<!-- 选择分类下小类   16类 -->
+				   <div id="erlei16" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox16','VoteOption16')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox16"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1601工业用纸"> 1601工业用纸
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1602技术用纸"> 1602技术用纸
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1603生活用纸"> 1603生活用纸
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1604纸板"> 1604纸板
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1605办公、日用纸制品"> 1605办公、日用纸制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1606印刷出版物"> 1606印刷出版物
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1607照片，图片，图画"> 1607照片，图片，图画
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1608纸牌，扑克牌"> 1608纸牌，扑克牌
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1609纸及塑料包装物品"> 1609纸及塑料包装物品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1610装订、切削用具"> 1610装订、切削用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1611办公文具"> 1611办公文具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1612墨，砚"> 1612墨，砚
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1613印章，印油"> 1613印章，印油
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1614笔"> 1614笔
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1615绘图、绘画仪器"> 1615绘图、绘画仪器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1616灭火器具"> 1616灭火器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1617绘画用具"> 1617绘画用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1618打字机、油印机"> 1618打字机、油印机
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1619教学用具"> 1619教学用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1620室内模型物"> 1620室内模型物
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption16"  value="1621单一商品"> 1621单一商品
+				      </div>
+		      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('16','VoteOption16')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类   17类 -->
+				   <div id="erlei17" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox17','VoteOption17')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox17"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1701橡胶，古塔胶，树胶"> 1701橡胶，古塔胶，树胶
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1702非金属密封减震制品"> 1702非金属密封减震制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1703橡胶，树脂，纤维制品"> 1703橡胶，树脂，纤维制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1704软管"> 1704软管
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1705保温、隔热、隔音材料"> 1705保温、隔热、隔音材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1706绝缘用材料及其制品"> 1706绝缘用材料及其制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1707包装、填充用材料"> 1707包装、填充用材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption17"  value="1708单一商品"> 1708单一商品
+				      </div>
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('17','VoteOption17')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类  18类 -->
+				   <div id="erlei18" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox18','VoteOption18')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox18"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1801皮革"> 1801皮革
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1802日用革制品"> 1802日用革制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1803裘皮"> 1803裘皮
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1804雨伞"> 1804雨伞
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1805手杖"> 1805手杖
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1806动物用具"> 1806动物用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption18"  value="1807肠衣"> 1807肠衣
+				      </div>
+				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('18','VoteOption18')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类   19类 -->
+				   <div id="erlei19" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox19','VoteOption19')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox19"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1901半成品木材"> 1901半成品木材
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1902建筑用料"> 1902建筑用料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1903石膏"> 1903石膏
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1904水泥"> 1904水泥
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1905水泥预制构件"> 1905水泥预制构件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1906建筑砖瓦"> 1906建筑砖瓦
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1907非金属耐火材料"> 1907非金属耐火材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1908柏油，沥青"> 1908柏油，沥青
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1909非金属建筑材料"> 1909非金属建筑材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1910装订、切削用具"> 1910装订、切削用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1911建筑用玻璃材料"> 1911建筑用玻璃材料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1912建筑用涂层"> 1912建筑用涂层
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1913建筑用粘合料"> 1913建筑用粘合料
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1914非金属雕塑品"> 1914非金属雕塑品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption19"  value="1915棺椁墓碑"> 1915棺椁墓碑
+				      </div>
+
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('19','VoteOption19')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类   20类 -->
+				   <div id="erlei20" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox20','VoteOption20')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox20"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2001家具"> 2001家具
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2002非金属容器"> 2002非金属容器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2003工业、建筑配件"> 2003工业、建筑配件
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2004镜子、画框"> 2004镜子、画框
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2005竹、藤、棕、草制品"> 2005竹、藤、棕、草制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2006骨、角、牙、介工艺品"> 2006骨、角、牙、介工艺品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2007非金属牌照"> 2007非金属牌照
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2008食品用塑料装饰品"> 2008食品用塑料装饰品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2009禽、畜等动物用制品"> 2009禽、畜等动物用制品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2010非金属制身份鉴别手环"> 2010非金属制身份鉴别手环
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2011非金属棺材"> 2011非金属棺材
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2012非金属家具"> 2012非金属家具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2013垫，枕"> 2013垫，枕
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption20"  value="2014非金属紧固件"> 2014非金属紧固件
+				      </div>
+				      
+
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('20','VoteOption20')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类   21类 -->
+				   <div id="erlei21" style="z-index:21;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox21','VoteOption21')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox21"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2101厨房炊事用具"> 2101厨房炊事用具
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2102玻璃器皿"> 2102玻璃器皿
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2103瓷器，陶器"> 2103瓷器，陶器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2104玻璃工艺品"> 2104玻璃工艺品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2105饮具"> 2105饮具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2106日用及卫生器具"> 2106日用及卫生器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2107梳子，刷子"> 2107梳子，刷子
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2108刷牙用具"> 2108刷牙用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2109牙签"> 2109牙签
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2110化妆用具"> 2110化妆用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2111隔热用具"> 2111隔热用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2112家务用具"> 2112家务用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2113未加工或半加工玻璃"> 2113未加工或半加工玻璃
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2114动植物器具"> 2114动植物器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2115灭虫、灭鼠用具"> 2115灭虫、灭鼠用具
+				      </div>
+				      
+
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('21','VoteOption21')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类  22类 -->
+				   <div id="erlei22" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox22','VoteOption22')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox22"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption22"  value="2201缆，绳，线，带"> 2201缆，绳，线，带
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption22"  value="2202网，遮篷，帐篷，防水帆布，帆"> 2202网，遮篷，帐篷，防水帆布，帆
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption22"  value="2203袋子，装卸、包装用物品"> 2203袋子，装卸、包装用物品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption22"  value="2204衬垫，填充料，密封物品"> 2204衬垫，填充料，密封物品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption22"  value="2205纤维原料"> 2205纤维原料
+				      </div>
+				      <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('22','VoteOption22')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类  23类 -->
+				   <div id="erlei23" style="z-index:20;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox23','VoteOption23')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox23"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption23"  value="2301纺织用纱、丝"> 2301纺织用纱、丝
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption23"  value="2302线"> 2302线
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption23"  value="2303毛线"> 2303毛线
+				      </div>
+				      
+				      <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('23','VoteOption23')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				<!-- 选择分类下小类   21类 -->
+				   <div id="erlei21" style="z-index:21;border:1px solid #bbe1f1;background:#eefaff;height:300px;overflow:auto;display:none;text-align:left;padding-left:10px;">
+				      <div onclick="allSelect('checkbox21','VoteOption21')" >
+				         <input  style="width:15px;height:15px;" type="checkbox" name="checkbox21"  value=""> 全选/全不选
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2101厨房炊事用具"> 2101厨房炊事用具
+		              </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2102玻璃器皿"> 2102玻璃器皿
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2103瓷器，陶器"> 2103瓷器，陶器
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2104玻璃工艺品"> 2104玻璃工艺品
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2105饮具"> 2105饮具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2106日用及卫生器具"> 2106日用及卫生器具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2107梳子，刷子"> 2107梳子，刷子
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2108刷牙用具"> 2108刷牙用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2109牙签"> 2109牙签
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2110化妆用具"> 2110化妆用具
+				      </div>
+				      <div onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#eefaff';">
+				        <input style="width:15px;height:15px;" type="checkbox" name="VoteOption21"  value="2111隔热用具"> 2111隔热用具
+				      </div>
+				      
+				         <br/>
+				         <!--提交 -->
+					      <div >
+					           <div  onclick="checkbox('21','VoteOption21')" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">提 交</div>
+					           <div  onclick="xiaofenleiFanhui()" style="width:50px;height:30px;background:#f0fbeb;border:1px solid #9bdf70;line-height:30px;text-align:center;" onmouseover="this.style.backgroundColor='#CACBCE';" onmouseout="this.style.backgroundColor='#f0fbeb';">返回</div><br><br>
+					      </div>
+				       <!-- end -->
+				   </div>
+				<!-- end -->
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div id="jieguo" style=" display:none; border:1px solid #bbe1f1;background:#eefaff;text-align:left;color:#FFFFFF;height:300px;overflow:auto;">
+				  <div id="biaoti" style=" background:#4F5AA8;padding-left:10px;height:30px;line-height:30px;"> 此处显示选择好的大类名称 </div>
+				  <div id="show_text" style="color:#000000;"> </div>
+				</div>
+			   
+			
+				<div class="right-w3l" style="margin-top:15px;">
+					<input type="submit" style="padding:12px 25px;" value="开始检索"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" style="padding:12px 25px;" onclick="window.location.href='index.html';" value="退出">
+				</div>
+				
+				
+			</form>
+		</div>
+	</div>
+	<!--//main-->
+	<!--footer-->
+	<div class="footer">
+		<p>&copy; 2018 Creative Login Form. All rights reserved | Design by
+			<a href="#">南昌奇眸科技有限公司</a>
+		</p>
+		<img id="preview" />
+	</div>
+	<!--//footer-->
+</body>
+
+</html>

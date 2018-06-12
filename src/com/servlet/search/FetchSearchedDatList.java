@@ -40,7 +40,7 @@ public class FetchSearchedDatList extends HttpServlet {
 //				String userID = req.getParameter("username")==null?"":req.getParameter("username").trim();
 				String typeid = req.getParameter("clsid")==null?"":req.getParameter("clsid").trim();
 				String recordId = req.getParameter("fid")==null?"":req.getParameter("fid").trim();
-				String totalpage = req.getParameter("totalpage")==null?"1":req.getParameter("totalpage").trim();
+				String totalpage = req.getParameter("totalpage")==null?"1":req.getParameter("totalpage").trim();//第几页
 				ImgBO imgBO = new ImgBO();
 				
 				l = imgBO.getSearchedDatList(recordId, typeid,Integer.parseInt(CommParameter.getCommParameterByKey("pageSize")),Integer.parseInt(totalpage));

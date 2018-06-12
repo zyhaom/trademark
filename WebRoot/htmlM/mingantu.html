@@ -1,0 +1,81 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title></title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript"  src="js/param.js"></script>
+	
+	<script type="text/javascript">
+	
+	 //初始化方法接收上个页面传过来的数据。
+	 function init(){
+		$("#id_token_hidden").val(getParams("token"));
+	 }
+	//删除敏感图片 
+	function del(o){
+// 		alert(o);
+		$.post("http://192.168.1.78:8088/trademark/SensitivePic.do",
+			{
+    			delID:o
+  			},function(result,status){
+// 	     		alert(result+status);
+			if(result == 'ok'){
+				alert("删除成功");
+				location.reload();
+			}
+	  		});
+	 } 
+	$(document).ready(function(){
+	  init();
+	  
+	  
+	  $.post("http://192.168.1.78:8088/trademark/MinganPicShow",function(result){
+	    //$("span").html(result);
+	     //alert(result);
+	     if(result.length==0){
+	     	return;
+	     }
+	     var arra = result.split("~");
+	     var index = 1;
+	     for(var key in arra) {
+				var p = '<p>'+index+++'</p>'
+				
+				var img='<img src="http://192.168.1.78:8088/show/img/img/00/01/'+arra[key]+'" style="width: 150px;height: 150px" /> <input type="button" value="删除" onclick="del(&apos;'+arra[key]+'&apos;);"> <br />';
+				$("#div_id").append(p);
+				$("#div_id").append(img);
+		 } 
+	  });
+
+	});
+	</script>
+	
+</head>
+ 
+<body>
+<input type='hidden' id="id_token_hidden" value="">
+	<button onClick="javascript :history.back(-1);" style="width:100px;height:50px;" >返回</button><br/><br/><br/>
+	
+	<form enctype="multipart/form-data" action="http://192.168.1.78:8088/trademark/SensitivePic.do" method="post" target="uploadfrm">  
+	    <input type="file" name="file" value="选择图片"/>  
+	    <input id="" type="submit" value="保存"/>  
+	 </form>
+  
+   <iframe name="uploadfrm" id="uploadfrm" style="display: none;"></iframe>  
+       
+	<hr />
+	
+	<div id="div_id"></div>
+
+<button onClick="javascript :history.back(-1);" style="width:100px;height:50px;" >返回</button> <br><br/>	
+	<br>
+
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title></title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Creative Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript"  src="js/param.js"></script>
+	
+	
+ <script type="text/javascript">
+ 
+ //初始化方法接收上个页面传过来的数据。
+		 function init(){
+			$("#id_token_hidden").val(getParams("token"));
+		 }
+		 
+	$(document).ready(function(){
+		init();
+		
+		$.post("http://192.168.1.78:8088//trademark/RelevantType.do?option=sel&typeID=01",function(result){
+		    var arra = result.split("~");
+		    for(var key in arra) {
+						$('#'+arra[key]).attr('checked',true); 
+				} 
+		  });
+		  
+		var option =  "";
+		var typeID = "";
+		
+		
+	  $("#selectID").change(function(){
+	  	option =  "sel";
+	  	typeID=$(this).children('option:selected').val();//下拉框中的值
+		  //alert(typeID);
+		  
+		  $.post("http://192.168.1.78:8088//trademark/RelevantType.do?option="+option+"&typeID="+typeID,function(result){
+		    
+		    //alert(result);
+		    
+        var	allArra = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45"];
+        var tempArra;
+        if(result.length>0) {
+        	tempArra = result.split("~");
+        }
+        for(var key in allArra) {
+        	if($.inArray(allArra[key], tempArra)!=-1){
+        		//alert(allArra[key]);
+        		$('#'+allArra[key]).prop('checked',true);
+          }else{
+         	  $('#'+allArra[key]).prop('checked',false);
+          }
+        }
+        
+		  });
+		});
+	});
+	
+	
+		function optionfunc(o){
+			
+			//alert(o.id);
+			var relevantType = o.id;
+			var typeID=$("#selectID").children('option:selected').val();
+			if($("#"+o.id).get(0).checked){
+				option="ins";
+			}else{
+				option="del";
+			}
+			//alert(option+typeID+relevantType);
+			$.post("http://192.168.1.78:8088//trademark/RelevantType.do?option="+option+"&typeID="+typeID+"&relevantType="+relevantType,function(result){
+			});
+		}
+		
+	</script>
+
+	
+	
+</head>
+
+<body>
+<input type='hidden' id="id_token_hidden" value="">
+<button onClick="javascript :history.back(-1);" style="width:100px;height:50px;">返回</button> <br><br/>
+
+
+<select name="carlist" id="selectID">
+<OPTION VALUE="01">化学原料</OPTION>
+<OPTION VALUE="02">颜料油漆</OPTION>
+<OPTION VALUE="03">日化用品</OPTION>
+<OPTION VALUE="04">燃料油脂</OPTION>
+<OPTION VALUE="05">医用医药</OPTION>
+<OPTION VALUE="06">金属材料</OPTION>
+<OPTION VALUE="07">机械设备</OPTION>
+<OPTION VALUE="08">手动器械</OPTION>
+<OPTION VALUE="09">科学仪器</OPTION>
+<OPTION VALUE="10">医疗器械</OPTION>
+<OPTION VALUE="11">灯具空调</OPTION>
+<OPTION VALUE="12">运载工具</OPTION>
+<OPTION VALUE="13">军火烟花</OPTION>
+<OPTION VALUE="14">珠宝钟表</OPTION>
+<OPTION VALUE="15">乐器用品</OPTION>
+<OPTION VALUE="16">办公用品</OPTION>
+<OPTION VALUE="17">橡胶制品</OPTION>
+<OPTION VALUE="18">皮革皮具</OPTION>
+<OPTION VALUE="19">建筑材料</OPTION>
+<OPTION VALUE="20">家具制品</OPTION>
+<OPTION VALUE="21">厨房洁具</OPTION>
+<OPTION VALUE="22">绳网袋篷</OPTION>
+<OPTION VALUE="23">纱线丝品</OPTION>
+<OPTION VALUE="24">布料传单</OPTION>
+<OPTION VALUE="25">服装鞋帽</OPTION>
+<OPTION VALUE="26">纽扣拉链</OPTION>
+<OPTION VALUE="27">地毯席垫</OPTION>
+<OPTION VALUE="28">健身器材</OPTION>
+<OPTION VALUE="29">肉类食品</OPTION>
+<OPTION VALUE="30">方便食品</OPTION>
+<OPTION VALUE="31">饲料种籽</OPTION>
+<OPTION VALUE="32">啤酒饮料</OPTION>
+<OPTION VALUE="33">含酒精酒</OPTION>
+<OPTION VALUE="34">烟草烟具</OPTION>
+<OPTION VALUE="35">广告销售</OPTION>
+<OPTION VALUE="36">金融物管</OPTION>
+<OPTION VALUE="37">建筑修理</OPTION>
+<OPTION VALUE="38">通讯服务</OPTION>
+<OPTION VALUE="39">运输储藏</OPTION>
+<OPTION VALUE="40">材料加工</OPTION>
+<OPTION VALUE="41">教育娱乐</OPTION>
+<OPTION VALUE="42">网站法律</OPTION>
+<OPTION VALUE="43">餐饮酒店</OPTION>
+<OPTION VALUE="44">医疗园艺</OPTION>
+<OPTION VALUE="45">社会服务</OPTION>
+</select>
+<hr />
+<input TYPE="checkbox" id="01" onClick="optionfunc(this);" value="化学原料" >化学原料</input>
+<input TYPE="checkbox" id="02" onClick="optionfunc(this);" value="颜料油漆" >颜料油漆</input>
+<input TYPE="checkbox" id="03" onClick="optionfunc(this);" value="日化用品" >日化用品</input>
+<input TYPE="checkbox" id="04" onClick="optionfunc(this);" value="燃料油脂" >燃料油脂</input>
+<input TYPE="checkbox" id="05" onClick="optionfunc(this);" value="医用医药" >医用医药</input>
+<input TYPE="checkbox" id="06" onClick="optionfunc(this);" value="金属材料" >金属材料</input>
+<input TYPE="checkbox" id="07" onClick="optionfunc(this);" value="机械设备" >机械设备</input>
+<input TYPE="checkbox" id="08" onClick="optionfunc(this);" value="手动器械" >手动器械</input>
+<input TYPE="checkbox" id="09" onClick="optionfunc(this);" value="科学仪器" >科学仪器</input>
+<input TYPE="checkbox" id="10" onClick="optionfunc(this);" value="医疗器械" >医疗器械</input>
+<input TYPE="checkbox" id="11" onClick="optionfunc(this);" value="灯具空调" >灯具空调</input>
+<input TYPE="checkbox" id="12" onClick="optionfunc(this);" value="运载工具" >运载工具</input>
+<input TYPE="checkbox" id="13" onClick="optionfunc(this);" value="军火烟花" >军火烟花</input>
+<input TYPE="checkbox" id="14" onClick="optionfunc(this);" value="珠宝钟表" >珠宝钟表</input></br>
+<input TYPE="checkbox" id="15" onClick="optionfunc(this);" value="乐器用品" >乐器用品</input>
+<input TYPE="checkbox" id="16" onClick="optionfunc(this);" value="办公用品" >办公用品</input>
+<input TYPE="checkbox" id="17" onClick="optionfunc(this);" value="橡胶制品" >橡胶制品</input>
+<input TYPE="checkbox" id="18" onClick="optionfunc(this);" value="皮革皮具" >皮革皮具</input>
+<input TYPE="checkbox" id="19" onClick="optionfunc(this);" value="建筑材料" >建筑材料</input>
+<input TYPE="checkbox" id="20" onClick="optionfunc(this);" value="家具制品" >家具制品</input>
+<input TYPE="checkbox" id="21" onClick="optionfunc(this);" value="厨房洁具" >厨房洁具</input>
+<input TYPE="checkbox" id="22" onClick="optionfunc(this);" value="绳网袋篷" >绳网袋篷</input>
+<input TYPE="checkbox" id="23" onClick="optionfunc(this);" value="纱线丝品" >纱线丝品</input>
+<input TYPE="checkbox" id="24" onClick="optionfunc(this);" value="布料传单" >布料传单</input></br>
+<input TYPE="checkbox" id="25" onClick="optionfunc(this);" value="服装鞋帽" >服装鞋帽</input>
+<input TYPE="checkbox" id="26" onClick="optionfunc(this);" value="纽扣拉链" >纽扣拉链</input>
+<input TYPE="checkbox" id="27" onClick="optionfunc(this);" value="地毯席垫" >地毯席垫</input>
+<input TYPE="checkbox" id="28" onClick="optionfunc(this);" value="健身器材" >健身器材</input>
+<input TYPE="checkbox" id="29" onClick="optionfunc(this);" value="肉类食品" >肉类食品</input>
+<input TYPE="checkbox" id="30" onClick="optionfunc(this);" value="方便食品" >方便食品</input>
+<input TYPE="checkbox" id="31" onClick="optionfunc(this);" value="饲料种籽" >饲料种籽</input>
+<input TYPE="checkbox" id="32" onClick="optionfunc(this);" value="啤酒饮料" >啤酒饮料</input>
+<input TYPE="checkbox" id="33" onClick="optionfunc(this);" value="含酒精酒" >含酒精酒</input>
+<input TYPE="checkbox" id="34" onClick="optionfunc(this);" value="烟草烟具" >烟草烟具</input></br>
+<input TYPE="checkbox" id="35" onClick="optionfunc(this);" value="广告销售" >广告销售</input>
+<input TYPE="checkbox" id="36" onClick="optionfunc(this);" value="金融物管" >金融物管</input>
+<input TYPE="checkbox" id="37" onClick="optionfunc(this);" value="建筑修理" >建筑修理</input>
+<input TYPE="checkbox" id="38" onClick="optionfunc(this);" value="通讯服务" >通讯服务</input>
+<input TYPE="checkbox" id="39" onClick="optionfunc(this);" value="运输储藏" >运输储藏</input>
+<input TYPE="checkbox" id="40" onClick="optionfunc(this);" value="材料加工" >材料加工</input>
+<input TYPE="checkbox" id="41" onClick="optionfunc(this);" value="教育娱乐" >教育娱乐</input>
+<input TYPE="checkbox" id="42" onClick="optionfunc(this);" value="网站法律" >网站法律</input>
+<input TYPE="checkbox" id="43" onClick="optionfunc(this);" value="餐饮酒店" >餐饮酒店</input>
+<input TYPE="checkbox" id="44" onClick="optionfunc(this);" value="医疗园艺" >医疗园艺</input>
+<input TYPE="checkbox" id="45" onClick="optionfunc(this);" value="社会服务" >社会服务</input>
+
+<br>
+
+<button onClick="javascript :history.back(-1);" style="width:100px;height:50px;">返回</button> <br><br/>
+	
+</body>
+
+</html>

@@ -44,7 +44,8 @@ public class MinganPicShow extends HttpServlet {
 //				System.out.println(it.next());
 				rs+=it.next()+"~";
 			}
-			rs = rs.substring(0, rs.length()-1);
+			if(rs.length()>0)
+				rs = rs.substring(0, rs.length()-1);
 			out.print(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
